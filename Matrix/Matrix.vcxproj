@@ -15,6 +15,7 @@
     <ProjectGuid>{D1325B95-FF6F-4651-8522-6BE9521FC92C}</ProjectGuid>
     <RootNamespace>Matrix</RootNamespace>
     <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithread|x64'" Label="Configuration">
@@ -41,7 +42,13 @@
   <PropertyGroup>
     <_ProjectFileVersion>17.0.34804.30</_ProjectFileVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|x64'">
+    <OutDir>../lib/1.0/</OutDir>
+    <TargetName>$(ProjectName)-d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithread|x64'">
+    <OutDir>../lib/1.0/</OutDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
@@ -78,7 +85,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\inc\1.0\Matrix.h" />
-    <ClInclude Include="..\inc\1.0\PMatrix.h" />
     <ClInclude Include="..\inc\1.0\Svd.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

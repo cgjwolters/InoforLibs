@@ -46,7 +46,13 @@
   <PropertyGroup>
     <_ProjectFileVersion>17.0.34804.30</_ProjectFileVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithread|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithread|x64'">
+    <OutDir>..\lib\1.0\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|x64'">
+    <OutDir>..\lib\1.0\</OutDir>
+    <TargetName>$(ProjectName)-d</TargetName>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithread|x64'">
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>

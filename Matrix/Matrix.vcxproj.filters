@@ -26,9 +26,6 @@
     <ClInclude Include="..\inc\1.0\Matrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\1.0\PMatrix.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\inc\1.0\Svd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
