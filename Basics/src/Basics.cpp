@@ -111,14 +111,14 @@ void trim(char *line)
 {
   if (!line) return;
 
-  long sz = strlen(line);
+  long sz = (long)strlen(line);
 
-  for (int i=sz-1; i>=0; --i) {
+  for (long i=sz-1; i>=0; --i) {
     if (isspace(line[i])) line[i] = '\0';
     else break;
   }
 
-  sz = strlen(line);
+  sz = (long)strlen(line);
 
   for (int i=0; i<sz; ++i) {
     if (!isspace(line[i])) {
@@ -138,14 +138,14 @@ void trim(wchar_t *line)
 {
   if (!line) return;
 
-  long sz = wcslen(line);
+  long sz = (long)wcslen(line);
 
-  for (int i=sz-1; i>=0; --i) {
+  for (long i=sz-1; i>=0; --i) {
     if (iswspace(line[i])) line[i] = '\0';
     else break;
   }
 
-  sz = wcslen(line);
+  sz = (long)wcslen(line);
 
   for (int i=0; i<sz; ++i) {
     if (!iswspace(line[i])) {
@@ -264,11 +264,11 @@ wchar_t *dupChar2WChar(const char *s)
 {
   if (!s) return NULL;
 
-  int len = strlen(s);
+  long len = (long)strlen(s);
 
   wchar_t *newStr = new wchar_t[len+1];
 
-  for (int i=0; i<len; ++i) newStr[i] = s[i];
+  for (long i=0; i<len; ++i) newStr[i] = s[i];
 
   newStr[len] = 0;
 
@@ -311,11 +311,11 @@ char *dupWChar2Char(const wchar_t *s)
 {
   if (!s) return NULL;
 
-  int len = wcslen(s);
+  long len = (long)wcslen(s);
 
   char *newStr = new char[len+1];
 
-  for (int i=0; i<len; ++i) {
+  for (long i=0; i<len; ++i) {
     if (s[i] > 127) newStr[i] = '#';
     else newStr[i] = (char)s[i];
   }

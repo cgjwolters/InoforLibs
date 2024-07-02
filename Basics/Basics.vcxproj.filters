@@ -2,75 +2,16 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{8e4e131b-02f3-42e5-bffc-aa29b10136f9}</UniqueIdentifier>
+      <UniqueIdentifier>{82e8a286-a4ec-4095-84f6-1c06b83bb795}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
-    <Filter Include="Source Files\ZLib Files">
-      <UniqueIdentifier>{afa48ba6-519a-479e-b2f0-9ba0365cefbe}</UniqueIdentifier>
-      <Extensions>c</Extensions>
-    </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{cc070df4-34ec-47fd-8b41-3a48201abe52}</UniqueIdentifier>
+      <UniqueIdentifier>{581d8e64-6672-4c00-82c3-81173bb3edaf}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
-    </Filter>
-    <Filter Include="Header Files\ZLib Headers">
-      <UniqueIdentifier>{d8710cd3-3073-47ad-9f93-4f34fca76d10}</UniqueIdentifier>
-      <Extensions>h</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\AnsiFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Base64.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Base64Writer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Basics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Box3D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\BufferedReader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\BufferedWriter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ByteArrayReader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ByteArrayWriter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CompressedReader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CompressedWriter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Crc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Crc32Writer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DataReader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DataWriter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DesCipher.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EventDispatcher.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Hex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\NonLinLsSolver.cpp">
@@ -79,22 +20,7 @@
     <ClCompile Include="src\ProgressReporter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\PTrf.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\PVec.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Reader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Rect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\StdioReader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\StdioWriter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Trf.cpp">
@@ -103,102 +29,18 @@
     <ClCompile Include="src\TrfTrain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\UniFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Vec.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Writer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ZipOut.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\zlib\adler32.c">
-      <Filter>Source Files\ZLib Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\zlib\compress.c">
-      <Filter>Source Files\ZLib Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\zlib\crc32.c">
-      <Filter>Source Files\ZLib Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\zlib\deflate.c">
-      <Filter>Source Files\ZLib Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\zlib\gzio.c">
-      <Filter>Source Files\ZLib Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\zlib\inffast.c">
-      <Filter>Source Files\ZLib Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\zlib\inflate.c">
-      <Filter>Source Files\ZLib Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\zlib\inftrees.c">
-      <Filter>Source Files\ZLib Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\zlib\trees.c">
-      <Filter>Source Files\ZLib Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\zlib\uncompr.c">
-      <Filter>Source Files\ZLib Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\zlib\zutil.c">
-      <Filter>Source Files\ZLib Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\inc\1.0\ZipOut.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\1.0\AnsiFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\inc\1.0\Base64.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\1.0\Basics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\1.0\Box3D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\1.0\Crc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\1.0\DesCipher.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\1.0\EventDispatcher.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\1.0\Exceptions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\1.0\Hex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\inc\1.0\NonLinLsSolver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\1.0\PArray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\1.0\PArrayImp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\1.0\PArrayTraits.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\1.0\PTrf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\1.0\PVec.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\1.0\Reader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\1.0\Rect.h">
@@ -210,44 +52,17 @@
     <ClInclude Include="..\inc\1.0\TrfTrain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\1.0\UniFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\inc\1.0\Vec.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\1.0\Writer.h">
+    <ClInclude Include="..\inc\1.0\PArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\zlib\crc32.h">
-      <Filter>Header Files\ZLib Headers</Filter>
+    <ClInclude Include="..\inc\1.0\PArrayImp.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\zlib\deflate.h">
-      <Filter>Header Files\ZLib Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\zlib\inffast.h">
-      <Filter>Header Files\ZLib Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\zlib\inffixed.h">
-      <Filter>Header Files\ZLib Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\zlib\inflate.h">
-      <Filter>Header Files\ZLib Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\zlib\inftrees.h">
-      <Filter>Header Files\ZLib Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\zlib\trees.h">
-      <Filter>Header Files\ZLib Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\zlib\zconf.h">
-      <Filter>Header Files\ZLib Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\zlib\zlib.h">
-      <Filter>Header Files\ZLib Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\zlib\zutil.h">
-      <Filter>Header Files\ZLib Headers</Filter>
+    <ClInclude Include="..\inc\1.0\PArrayTraits.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -151,16 +151,16 @@ static void houseUpdRows(DMat mat, int m, int n, DMat rMat, int row,
   DVec vec = rMat[row];
 
   for (int i1=m; i1<n; i1++) {
-    DVec row = mat[i1];
+    DVec rowVec = mat[i1];
 
-    double s = row[k] * vk;
+    double s = rowVec[k] * vk;
 
-    for (int i2=k+1; i2<j; i2++) s += row[i2] * vec[i2];
+    for (int i2=k+1; i2<j; i2++) s += rowVec[i2] * vec[i2];
 
     s /= b;
-    row[k] -= s * vk;
+    rowVec[k] -= s * vk;
 
-    for (int i2=k+1; i2<j; i2++) row[i2] -= s * vec[i2];
+    for (int i2=k+1; i2<j; i2++) rowVec[i2] -= s * vec[i2];
   }
 }
 

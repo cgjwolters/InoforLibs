@@ -16,6 +16,8 @@
 namespace Ino
 {
 
+  class Persistable;
+
 namespace PArrayTraits
 {
 
@@ -36,7 +38,7 @@ template <class T> struct BaseType
   struct No  { char c[8]; };
 
   static No  m(...);
-  static Yes m(const Persistable*);
+  static Yes m(const Persistable *p);
 
   static typename Deref<T>::Type *t;
   static const bool IsPersistRef = __is_class(T) &&

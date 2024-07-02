@@ -1,157 +1,50 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug Multithread DLL|Win32">
-      <Configuration>Debug Multithread DLL</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug Multithread|Win32">
+    <ProjectConfiguration Include="Debug Multithread|x64">
       <Configuration>Debug Multithread</Configuration>
-      <Platform>Win32</Platform>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug Singlethread|Win32">
-      <Configuration>Debug Singlethread</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release Multithread DLL|Win32">
-      <Configuration>Release Multithread DLL</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release Multithread|Win32">
+    <ProjectConfiguration Include="Release Multithread|x64">
       <Configuration>Release Multithread</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release Singlethread|Win32">
-      <Configuration>Release Singlethread</Configuration>
-      <Platform>Win32</Platform>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
     <ProjectGuid>{E3B9C214-EA03-4C0E-8DD9-827DD6AC10F0}</ProjectGuid>
     <RootNamespace>Basics</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithread|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>NotSet</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v120</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>NotSet</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v120</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>NotSet</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v120</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>NotSet</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v120</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithread|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
+    <_ProjectFileVersion>17.0.34804.30</_ProjectFileVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">
-    <OutDir>.\Basics___Win32_Singlethread_Debug\</OutDir>
-    <IntDir>.\Basics___Win32_Singlethread_Debug\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">
-    <OutDir>.\Basics___Win32_Mulithread_Release\</OutDir>
-    <IntDir>.\Basics___Win32_Mulithread_Release\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">
-    <OutDir>.\Basics___Win32_Multithread_DLL_Debug\</OutDir>
-    <IntDir>.\Basics___Win32_Multithread_DLL_Debug\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">
-    <OutDir>.\Basics___Win32_Singlethread_Release\</OutDir>
-    <IntDir>.\Basics___Win32_Singlethread_Release\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">
-    <OutDir>.\Basics___Win32_Multithread_Debug\</OutDir>
-    <IntDir>.\Basics___Win32_Multithread_Debug\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">
-    <OutDir>.\Basics___Win32_Multithread_DLL_Release\</OutDir>
-    <IntDir>.\Basics___Win32_Multithread_DLL_Release\</IntDir>
-  </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>inc\zlib;.;inc;..\inc\1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
-      <PrecompiledHeaderOutputFile>.\Basics___Win32_Singlethread_Debug/Basics.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\Basics___Win32_Singlethread_Debug/</AssemblerListingLocation>
-      <ObjectFileName>.\Basics___Win32_Singlethread_Debug/</ObjectFileName>
-      <ProgramDataBaseFileName>.\Basics___Win32_Singlethread_Debug/</ProgramDataBaseFileName>
-      <BrowseInformation>true</BrowseInformation>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>Default</CompileAs>
-    </ClCompile>
-    <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0413</Culture>
-    </ResourceCompile>
-    <Lib>
-      <OutputFile>..\lib\1.0\Basics-st-d.lib</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-    </Lib>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithread|x64'" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithread|x64'">
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
@@ -163,10 +56,10 @@
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
-      <PrecompiledHeaderOutputFile>.\Basics___Win32_Mulithread_Release/Basics.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\Basics___Win32_Mulithread_Release/</AssemblerListingLocation>
-      <ObjectFileName>.\Basics___Win32_Mulithread_Release/</ObjectFileName>
-      <ProgramDataBaseFileName>.\Basics___Win32_Mulithread_Release/</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\Basics___X64_Mulithread_Release/Basics.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Basics___X64_Mulithread_Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Basics___X64_Mulithread_Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Basics___X64_Mulithread_Release/</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <CompileAs>Default</CompileAs>
@@ -176,42 +69,13 @@
       <Culture>0x0413</Culture>
     </ResourceCompile>
     <Lib>
-      <OutputFile>..\lib\1.0\Basics-mt.lib</OutputFile>
+      <OutputFile>..\lib\1.0\Basics.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Lib>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;inc;inc\zlib;..\inc\1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
-      <PrecompiledHeaderOutputFile>.\Basics___Win32_Multithread_DLL_Debug/Basics.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\Basics___Win32_Multithread_DLL_Debug/</AssemblerListingLocation>
-      <ObjectFileName>.\Basics___Win32_Multithread_DLL_Debug/</ObjectFileName>
-      <ProgramDataBaseFileName>.\Basics___Win32_Multithread_DLL_Debug/</ProgramDataBaseFileName>
-      <BrowseInformation>true</BrowseInformation>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>Default</CompileAs>
-    </ClCompile>
-    <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0413</Culture>
-    </ResourceCompile>
-    <Lib>
-      <OutputFile>..\lib\1.0\Basics-mtd-d.lib</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-    </Lib>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">
-    <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>.;inc;inc\zlib;..\inc\1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -221,10 +85,10 @@
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
-      <PrecompiledHeaderOutputFile>.\Basics___Win32_Singlethread_Release/Basics.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\Basics___Win32_Singlethread_Release/</AssemblerListingLocation>
-      <ObjectFileName>.\Basics___Win32_Singlethread_Release/</ObjectFileName>
-      <ProgramDataBaseFileName>.\Basics___Win32_Singlethread_Release/</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>.\Basics___X64_Mulithread_Release/Basics.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Basics___X64_Mulithread_Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Basics___X64_Mulithread_Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Basics___X64_Mulithread_Debug/</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <CompileAs>Default</CompileAs>
@@ -234,345 +98,30 @@
       <Culture>0x0413</Culture>
     </ResourceCompile>
     <Lib>
-      <OutputFile>..\lib\1.0\Basics-st.lib</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-    </Lib>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;inc;inc\zlib;..\inc\1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
-      <PrecompiledHeaderOutputFile>.\Basics___Win32_Multithread_Debug/Basics.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\Basics___Win32_Multithread_Debug/</AssemblerListingLocation>
-      <ObjectFileName>.\Basics___Win32_Multithread_Debug/</ObjectFileName>
-      <ProgramDataBaseFileName>.\Basics___Win32_Multithread_Debug/</ProgramDataBaseFileName>
-      <BrowseInformation>true</BrowseInformation>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>Default</CompileAs>
-    </ClCompile>
-    <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0413</Culture>
-    </ResourceCompile>
-    <Lib>
-      <OutputFile>..\lib\1.0\Basics-mt-d.lib</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-    </Lib>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">
-    <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
-      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>.;inc;inc\zlib;..\inc\1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
-      <PrecompiledHeaderOutputFile>.\Basics___Win32_Multithread_DLL_Release/Basics.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\Basics___Win32_Multithread_DLL_Release/</AssemblerListingLocation>
-      <ObjectFileName>.\Basics___Win32_Multithread_DLL_Release/</ObjectFileName>
-      <ProgramDataBaseFileName>.\Basics___Win32_Multithread_DLL_Release/</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <CompileAs>Default</CompileAs>
-    </ClCompile>
-    <ResourceCompile>
-      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0413</Culture>
-    </ResourceCompile>
-    <Lib>
-      <OutputFile>..\lib\1.0\Basics-mtd.lib</OutputFile>
+      <OutputFile>..\lib\1.0\Basics-d.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\AnsiFile.cpp" />
-    <ClCompile Include="src\Base64.cpp" />
-    <ClCompile Include="src\Base64Writer.cpp" />
     <ClCompile Include="src\Basics.cpp" />
-    <ClCompile Include="src\Box3D.cpp" />
-    <ClCompile Include="src\BufferedReader.cpp" />
-    <ClCompile Include="src\BufferedWriter.cpp" />
-    <ClCompile Include="src\ByteArrayReader.cpp" />
-    <ClCompile Include="src\ByteArrayWriter.cpp" />
-    <ClCompile Include="src\CompressedReader.cpp" />
-    <ClCompile Include="src\CompressedWriter.cpp" />
-    <ClCompile Include="src\Crc.cpp" />
-    <ClCompile Include="src\Crc32Writer.cpp" />
-    <ClCompile Include="src\DataReader.cpp" />
-    <ClCompile Include="src\DataWriter.cpp" />
-    <ClCompile Include="src\DesCipher.cpp" />
-    <ClCompile Include="src\EventDispatcher.cpp" />
-    <ClCompile Include="src\Hex.cpp" />
     <ClCompile Include="src\NonLinLsSolver.cpp" />
     <ClCompile Include="src\ProgressReporter.cpp" />
-    <ClCompile Include="src\PTrf.cpp" />
-    <ClCompile Include="src\PVec.cpp" />
-    <ClCompile Include="src\Reader.cpp" />
     <ClCompile Include="src\Rect.cpp" />
-    <ClCompile Include="src\StdioReader.cpp" />
-    <ClCompile Include="src\StdioWriter.cpp" />
     <ClCompile Include="src\Trf.cpp" />
     <ClCompile Include="src\TrfTrain.cpp" />
-    <ClCompile Include="src\UniFile.cpp" />
     <ClCompile Include="src\Vec.cpp" />
-    <ClCompile Include="src\Writer.cpp" />
-    <ClCompile Include="src\ZipOut.cpp" />
-    <ClCompile Include="src\zlib\adler32.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">Disabled</Optimization>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">Level3</WarningLevel>
-    </ClCompile>
-    <ClCompile Include="src\zlib\compress.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">Disabled</Optimization>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">Level3</WarningLevel>
-    </ClCompile>
-    <ClCompile Include="src\zlib\crc32.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">Disabled</Optimization>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">Level3</WarningLevel>
-    </ClCompile>
-    <ClCompile Include="src\zlib\deflate.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">Disabled</Optimization>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">Level3</WarningLevel>
-    </ClCompile>
-    <ClCompile Include="src\zlib\gzio.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">Disabled</Optimization>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">Level3</WarningLevel>
-    </ClCompile>
-    <ClCompile Include="src\zlib\inffast.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">Disabled</Optimization>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">Level3</WarningLevel>
-    </ClCompile>
-    <ClCompile Include="src\zlib\inflate.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">Disabled</Optimization>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">Level3</WarningLevel>
-    </ClCompile>
-    <ClCompile Include="src\zlib\inftrees.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">Disabled</Optimization>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">Level3</WarningLevel>
-    </ClCompile>
-    <ClCompile Include="src\zlib\trees.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">Disabled</Optimization>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">Level3</WarningLevel>
-    </ClCompile>
-    <ClCompile Include="src\zlib\uncompr.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">Disabled</Optimization>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">Level3</WarningLevel>
-    </ClCompile>
-    <ClCompile Include="src\zlib\zutil.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Multithread DLL|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">Disabled</Optimization>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Multithread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">Disabled</Optimization>
-      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">EnableFastChecks</BasicRuntimeChecks>
-      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">true</BrowseInformation>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug Singlethread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Multithread DLL|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Multithread|Win32'">Level3</WarningLevel>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">MaxSpeed</Optimization>
-      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release Singlethread|Win32'">Level3</WarningLevel>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\inc\1.0\AnsiFile.h" />
     <ClInclude Include="..\inc\1.0\Base64.h" />
     <ClInclude Include="..\inc\1.0\Basics.h" />
-    <ClInclude Include="..\inc\1.0\Box3D.h" />
-    <ClInclude Include="..\inc\1.0\Crc.h" />
-    <ClInclude Include="..\inc\1.0\DesCipher.h" />
-    <ClInclude Include="..\inc\1.0\EventDispatcher.h" />
-    <ClInclude Include="..\inc\1.0\Exceptions.h" />
-    <ClInclude Include="..\inc\1.0\Hex.h" />
     <ClInclude Include="..\inc\1.0\NonLinLsSolver.h" />
     <ClInclude Include="..\inc\1.0\PArray.h" />
     <ClInclude Include="..\inc\1.0\PArrayImp.h" />
     <ClInclude Include="..\inc\1.0\PArrayTraits.h" />
-    <ClInclude Include="..\inc\1.0\PTrf.h" />
-    <ClInclude Include="..\inc\1.0\PVec.h" />
-    <ClInclude Include="..\inc\1.0\Reader.h" />
     <ClInclude Include="..\inc\1.0\Rect.h" />
     <ClInclude Include="..\inc\1.0\Trf.h" />
     <ClInclude Include="..\inc\1.0\TrfTrain.h" />
-    <ClInclude Include="..\inc\1.0\UniFile.h" />
     <ClInclude Include="..\inc\1.0\Vec.h" />
-    <ClInclude Include="..\inc\1.0\Writer.h" />
-    <ClInclude Include="..\inc\1.0\ZipOut.h" />
-    <ClInclude Include="inc\zlib\crc32.h" />
-    <ClInclude Include="inc\zlib\deflate.h" />
-    <ClInclude Include="inc\zlib\inffast.h" />
-    <ClInclude Include="inc\zlib\inffixed.h" />
-    <ClInclude Include="inc\zlib\inflate.h" />
-    <ClInclude Include="inc\zlib\inftrees.h" />
-    <ClInclude Include="inc\zlib\trees.h" />
-    <ClInclude Include="inc\zlib\zconf.h" />
-    <ClInclude Include="inc\zlib\zlib.h" />
-    <ClInclude Include="inc\zlib\zutil.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

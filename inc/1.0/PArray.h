@@ -55,8 +55,6 @@
 #ifndef INOPARRAY_INC
 #define INOPARRAY_INC
 
-#include "PersistentIO.h"
-
 #include "PArrayTraits.h"
 
 namespace Ino
@@ -64,7 +62,7 @@ namespace Ino
 
 //---------------------------------------------------------------------------
 
-template <class T> class PArray : public MainPersistable
+template <class T> class PArray// : public MainPersistable
 {
   static const int TypeVal = PArrayTraits::BaseType<T>::TypeVal;
   typedef typename PArrayTraits::Type<T,TypeVal>::ElemType ElemType;
@@ -118,19 +116,6 @@ public:
   template <class LessThan> void stableSort(LessThan *lt);
 #endif
 
-  // Persistence Section, do not call!
-  PArray(PersistentReader& pi);
-  virtual void definePersistentFields(PersistentWriter& po) const;
-  virtual void writePersistentObject(PersistentWriter& po) const;
-  virtual void readPersistentComplete(PersistentReader&) {}
-
-  // Special purpose: read/write plain old arrays, see docs
-  // May call, if you know what you are doing.
-  void addPersistentField(PersistentWriter& po, const char *fldName) const;
-  PArray(PersistentReader& pi, const char *fldName, int capIncrPercent = 50);
-  void writeArray(PersistentWriter& po, const char *fldName) const;
-
-  virtual void postProcess(PersistentReader& pi); // Do NOT call!
 };
 
 } // namespace Ino

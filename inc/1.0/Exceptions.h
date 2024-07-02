@@ -16,67 +16,67 @@
 namespace Ino
 {
 
-using namespace std;
+//using namespace std;
 
 //---------------------------------------------------------------------------
 // All exceptions below are derived from logic_error
 // (directly or indirectly), except OutOfmemoryException.
 //---------------------------------------------------------------------------
 
-class OutOfMemoryException : public runtime_error
+class OutOfMemoryException : public std::runtime_error
 {
   public:
-    OutOfMemoryException(const string& s) : runtime_error(s) {}
+    OutOfMemoryException(const std::string& s) : runtime_error(s) {}
 };
 
 //---------------------------------------------------------------------------
 
 // Exceptions that are programming errors
 
-class NullPointerException : public invalid_argument
+class NullPointerException : public std::invalid_argument
 {
   public:
-    NullPointerException(const string& s) : invalid_argument(s) {}
+    NullPointerException(const std::string& s) : std::invalid_argument(s) {}
 };
 
 //---------------------------------------------------------------------------
 
-class IndexOutOfBoundsException : public out_of_range
+class IndexOutOfBoundsException : public std::out_of_range
 {
   public:
-    explicit IndexOutOfBoundsException(const string& s) : out_of_range(s) {}
+    explicit IndexOutOfBoundsException(const std::string& s) : std::out_of_range(s) {}
 };
 
 //---------------------------------------------------------------------------
 
-class IllegalArgumentException : public invalid_argument
+class IllegalArgumentException : public std::invalid_argument
 {
   public:
-    explicit IllegalArgumentException(const string& s) : invalid_argument(s) {}
+    explicit IllegalArgumentException(const std::string& s) : std::invalid_argument(s) {}
 };
 
 //---------------------------------------------------------------------------
 
-class IllegalStateException : public domain_error
+class IllegalStateException : public std::domain_error
 {
   public:
-    explicit IllegalStateException(const string& s) : domain_error(s) {}
+    explicit IllegalStateException(const std::string& s) : std::domain_error(s) {}
 };
 
 //---------------------------------------------------------------------------
 
-class OperationNotSupportedException : public logic_error
+class OperationNotSupportedException : public std::logic_error
 {
   public:
-    explicit OperationNotSupportedException(const string& s) : logic_error(s) {}
+    explicit OperationNotSupportedException(const std::string& s) : std::logic_error(s) {}
 };
 
 //---------------------------------------------------------------------------
 
-class WrongTypeException : public logic_error
+class WrongTypeException : public std::logic_error
 {
   public:
-    explicit WrongTypeException(const string& s) : logic_error(s) {}
+    explicit WrongTypeException(const std::string& s) : std::logic_error(s) {}
 };
 
 //---------------------------------------------------------------------------
@@ -85,34 +85,34 @@ class WrongTypeException : public logic_error
 // Mostly user induced
 // Are normally caught and handled'
 
-class NoSuchElementException : public logic_error
+class NoSuchElementException : public std::logic_error
 {
   public:
-    explicit NoSuchElementException(const string& s) : logic_error(s) {}
+    explicit NoSuchElementException(const std::string& s) : std::logic_error(s) {}
 };
  
 //---------------------------------------------------------------------------
 
-class DuplicateNameException : public logic_error
+class DuplicateNameException : public std::logic_error
 {
   public:
-    explicit DuplicateNameException(const string& s) : logic_error(s) {}
+    explicit DuplicateNameException(const std::string& s) : std::logic_error(s) {}
 };
  
 //---------------------------------------------------------------------------
 
-class InterruptedException : public logic_error
+class InterruptedException : public std::logic_error
 {
   public:
-    explicit InterruptedException(const string& s) : logic_error(s) {}
+    explicit InterruptedException(const std::string& s) : std::logic_error(s) {}
 }; 
 
 //---------------------------------------------------------------------------
 
-class IOException : public logic_error
+class IOException : public std::logic_error
 {
   public:
-    explicit IOException(const string& s) : logic_error(s) {}
+    explicit IOException(const std::string& s) : std::logic_error(s) {}
 }; 
 
 //---------------------------------------------------------------------------
@@ -120,7 +120,7 @@ class IOException : public logic_error
 class IllegalFormatException : public IOException
 {
   public:
-    explicit IllegalFormatException(const string& s) : IOException(s) {}
+    explicit IllegalFormatException(const std::string& s) : IOException(s) {}
 };
 
 //---------------------------------------------------------------------------
@@ -128,7 +128,7 @@ class IllegalFormatException : public IOException
 class NumberFormatException : public IOException
 {
   public:
-    explicit NumberFormatException(const string& s) : IOException(s) {}
+    explicit NumberFormatException(const std::string& s) : IOException(s) {}
 };
 
 //---------------------------------------------------------------------------
@@ -136,7 +136,7 @@ class NumberFormatException : public IOException
 class FileFormatException : public IOException
 {
   public:
-    explicit FileFormatException(const string& s) : IOException(s) {}
+    explicit FileFormatException(const std::string& s) : IOException(s) {}
 };
  
 //---------------------------------------------------------------------------
@@ -144,7 +144,7 @@ class FileFormatException : public IOException
 class StreamCorruptedException : public IOException
 {
   public:
-    explicit StreamCorruptedException(const string& s) : IOException(s) {}
+    explicit StreamCorruptedException(const std::string& s) : IOException(s) {}
 };
  
 //---------------------------------------------------------------------------
@@ -152,7 +152,7 @@ class StreamCorruptedException : public IOException
 class StreamClosedException : public IOException
 {
   public:
-    explicit StreamClosedException(const string& s) : IOException(s) {}
+    explicit StreamClosedException(const std::string& s) : IOException(s) {}
 };
  
 //---------------------------------------------------------------------------
@@ -160,7 +160,7 @@ class StreamClosedException : public IOException
 class StreamAbortedException : public IOException
 {
   public:
-    explicit StreamAbortedException(const string& s) : IOException(s) {}
+    explicit StreamAbortedException(const std::string& s) : IOException(s) {}
 };
 
 //---------------------------------------------------------------------------
@@ -168,7 +168,7 @@ class StreamAbortedException : public IOException
 class FileNotFoundException : public IOException
 {
   public:
-    explicit FileNotFoundException(const string& s) : IOException(s) {}
+    explicit FileNotFoundException(const std::string& s) : IOException(s) {}
 };
 
 //---------------------------------------------------------------------------
@@ -176,7 +176,7 @@ class FileNotFoundException : public IOException
 class AccessDeniedException : public IOException
 {
   public:
-    explicit AccessDeniedException(const string& s) : IOException(s) {}
+    explicit AccessDeniedException(const std::string& s) : IOException(s) {}
 };
 
 } // namespace Ino
