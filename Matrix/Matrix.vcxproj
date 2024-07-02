@@ -64,7 +64,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
-      <OutputFile>../lib/1.0/Matrix-d.lib</OutputFile>
+      <OutputFile>..\lib\1.0\Matrix-d.lib</OutputFile>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Multithread|x64'">
@@ -76,7 +76,7 @@
       <WarningLevel>Level4</WarningLevel>
     </ClCompile>
     <Lib>
-      <OutputFile>../lib/1.0/Matrix.lib</OutputFile>
+      <OutputFile>..\lib\1.0\Matrix.lib</OutputFile>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
