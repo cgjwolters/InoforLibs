@@ -52,8 +52,8 @@
 
 //---------------------------------------------------------------------------
 
-#ifndef INOPARRAY_INC
-#define INOPARRAY_INC
+#ifndef INOARRAY_INC
+#define INOARRAY_INC
 
 #include "Exceptions.h"
 
@@ -61,19 +61,23 @@ namespace Ino
 {
   class ArrayElem
   {
+  public:
+    ArrayElem() {}
+    ArrayElem(const ArrayElem& cp) {}
+    virtual ~ArrayElem() {}
   };
 }
-#include "PArrayTraits.h"
+#include "ArrayTraits.h"
 
 namespace Ino
 {
 
 //---------------------------------------------------------------------------
 
-template <class T> class PArray : public ArrayElem
+template <class T> class Array : public ArrayElem
 {
-  static const int TypeVal = PArrayTraits::BaseType<T>::TypeVal;
-  typedef typename PArrayTraits::Type<T,TypeVal>::ElemType ElemType;
+  static const int TypeVal = ArrayTraits::BaseType<T>::TypeVal;
+  typedef typename ArrayTraits::Type<T,TypeVal>::ElemType ElemType;
 
   bool objOwner;
   int capIncPercent;
@@ -84,16 +88,16 @@ template <class T> class PArray : public ArrayElem
   void incCapacity();
 
 public:
-  typedef typename PArrayTraits::Type<T,TypeVal>::ArgType ArgType;
-  typedef typename PArrayTraits::Type<T,TypeVal>::ReturnType ReturnType;
-  typedef typename PArrayTraits::Type<T,TypeVal>::ConstReturnType ConstReturnType;
+  typedef typename ArrayTraits::Type<T,TypeVal>::ArgType ArgType;
+  typedef typename ArrayTraits::Type<T,TypeVal>::ReturnType ReturnType;
+  typedef typename ArrayTraits::Type<T,TypeVal>::ConstReturnType ConstReturnType;
 
-  PArray(int initCap = 8, int capIncrPercent = 50);
-  PArray(bool owner, int initCap = 8, int capIncrPercent = 50);
-  PArray(const PArray& cp);
-  virtual ~PArray();
+  Array(int initCap = 8, int capIncrPercent = 50);
+  Array(bool owner, int initCap = 8, int capIncrPercent = 50);
+  Array(const Array& cp);
+  virtual ~Array();
 
-  PArray& operator=(const PArray& src);
+  Array& operator=(const Array& src);
 
   bool isObjectOwner() const;
   void setObjectOwner(bool owner);
@@ -127,8 +131,7 @@ public:
 };
 
 } // namespace Ino
-
-#include "PArrayImp.h"
+#include "ArrayImp.h"
 
 //---------------------------------------------------------------------------
 #endif

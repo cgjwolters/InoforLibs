@@ -121,12 +121,12 @@
     <ClCompile Include="src\Vec.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\inc\1.0\Array.h" />
+    <ClInclude Include="..\inc\1.0\ArrayImp.h" />
+    <ClInclude Include="..\inc\1.0\ArrayTraits.h" />
     <ClInclude Include="..\inc\1.0\Base64.h" />
     <ClInclude Include="..\inc\1.0\Basics.h" />
     <ClInclude Include="..\inc\1.0\NonLinLsSolver.h" />
-    <ClInclude Include="..\inc\1.0\PArray.h" />
-    <ClInclude Include="..\inc\1.0\PArrayImp.h" />
-    <ClInclude Include="..\inc\1.0\PArrayTraits.h" />
     <ClInclude Include="..\inc\1.0\Rect.h" />
     <ClInclude Include="..\inc\1.0\Trf.h" />
     <ClInclude Include="..\inc\1.0\TrfTrain.h" />

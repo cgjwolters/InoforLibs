@@ -9,8 +9,8 @@
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
 
-#ifndef INOPARRAY_INC
-#error Do not include directly, include PArray.h instead
+#ifndef INOARRAY_INC
+#error Do not include directly, include Array.h instead
 #endif
 
 #include "Basics.h"
@@ -31,10 +31,10 @@ namespace Ino
 */
 
 //---------------------------------------------------------------------------
-/** \file PArray.h
-  This file contains the definition of the \ref Ino::PArray template.
+/** \file Array.h
+  This file contains the definition of the \ref Ino::Array template.
 
-  A \ref Ino::PArray is a generalized array,
+  A \ref Ino::Array is a generalized array,
   but suitable only for a limited set of types:
 
   \li <b>Signed basic types.</b>\n
@@ -58,9 +58,9 @@ namespace Ino
   elements of different types all derived from a base element type \c T,\n
   unless type \c T \b itself is \b abstract.\n
   \n
-  In that case consider a \c PArray of \b pointer to your element type.\n
+  In that case consider a \c Array of \b pointer to your element type.\n
   You may then set the array to be
-  \link Ino::PArray::setObjectOwner(bool) owner\endlink of the objects pointed to.\n
+  \link Ino::Array::setObjectOwner(bool) owner\endlink of the objects pointed to.\n
   Thus you \b can have a polymorphic array.
   
   \li <b>A pointer to a class derived from ArrayElem.</b>\n
@@ -69,21 +69,21 @@ namespace Ino
   \b owns the object: see below.\n\n
   The copy constructor or assigment operator will never be called.\n
   \n
-  The PArray can optionally be made to \b own the objects pointed to,
-  see this \link Ino::PArray::PArray(bool,int,int) constructor\endlink and
-  method \link Ino::PArray::setObjectOwner(bool) setObjectOwner()\endlink.\n
+  The Array can optionally be made to \b own the objects pointed to,
+  see this \link Ino::Array::Array(bool,int,int) constructor\endlink and
+  method \link Ino::Array::setObjectOwner(bool) setObjectOwner()\endlink.\n
   In that case operator delete \b will be used to the destroy the objects
   pointed to.
 
   For any other type the
-  \link Ino::PArray::PArray(int, int) PArray<T> constructor\endlink
+  \link Ino::Array::Array(int, int) Array<T> constructor\endlink
   will throw an Ino::IllegalArgumentException.
 
   \author C. Wolters
   \date Mar 2010, June 2024
 */
 
-namespace PArrayFuncs
+namespace ArrayFuncs
 {
 
 //---------------------------------------------------------------------------
@@ -202,11 +202,11 @@ template <class T> struct Func<T,3>
   static inline wchar_t *getItem(wchar_t *it) { return it; }
 };
 
-} // namespace PArrayFuncs
+} // namespace ArrayFuncs
 
 //---------------------------------------------------------------------------
 
-template <class T> void PArray<T>::incCapacity()
+template <class T> void Array<T>::incCapacity()
 {
   int newCap = lstCap + (int)(((long long)lstCap) * capIncPercent / 100);
 
@@ -219,35 +219,35 @@ template <class T> void PArray<T>::incCapacity()
 }
 
 //---------------------------------------------------------------------------
-/** \typedef typename PArrayTraits::Type<T,TypeVal>::ArgType PArray::ArgType
+/** \typedef typename ArrayTraits::Type<T,TypeVal>::ArgType Array::ArgType
   Defines the type of argument \c item for methods add(), set() and insert().
 
   See \ref TypeResolution for details.
 */
 
 //---------------------------------------------------------------------------
-/** \typedef PArrayTraits::Type<T,TypeVal>::ReturnType PArray::ReturnType
+/** \typedef ArrayTraits::Type<T,TypeVal>::ReturnType Array::ReturnType
   Defines the return type for methods get(int) and operator[](int).
 
   See \ref TypeResolution for details.
 */
 
 //---------------------------------------------------------------------------
-/** \typedef PArrayTraits::Type<T,TypeVal>::ConstReturnType PArray::ConstReturnType
+/** \typedef ArrayTraits::Type<T,TypeVal>::ConstReturnType Array::ConstReturnType
   Defines the return type for methods get(int) const and operator[](int) const
 
   See \ref TypeResolution for details.
 */
 
 //---------------------------------------------------------------------------
-/** \fn int PArray::size() const
+/** \fn int Array::size() const
     Returns the size of this array.
 
     \return The number of elements in this array.
 */
 
 //---------------------------------------------------------------------------
-/** \fn int PArray::cap() const
+/** \fn int Array::cap() const
     Returns the capacity of this array.
 
     \return The capacity, that is the allocated size of this array.\n
@@ -267,16 +267,16 @@ template <class T> void PArray<T>::incCapacity()
   This happens when a non NULL element is \link remove() removed\endlink or
   \link set() replaced\endlink,\n
   or else when method clear() or the
-  \link ~PArray() destructor\endlink is called.
+  \link ~Array() destructor\endlink is called.
 
   \throw OperationNotSupportedException if the element type \c T of
   this array is not an <tt>ArrayElem *</tt>.
 */
 
-template <class T> bool PArray<T>::isObjectOwner() const
+template <class T> bool Array<T>::isObjectOwner() const
 {
-  if (!PArrayTraits::BaseType<T>::IsArrayElemPtr)
-    throw OperationNotSupportedException("PArray<T>::isObjectOwner()\n"
+  if (!ArrayTraits::BaseType<T>::IsArrayElemPtr)
+    throw OperationNotSupportedException("Array<T>::isObjectOwner()\n"
                                    "Can only be owner of ArrayElem *");
 
   return objOwner;
@@ -295,16 +295,16 @@ template <class T> bool PArray<T>::isObjectOwner() const
   This happens when a non NULL element is \link remove() removed\endlink or
   \link set() replaced\endlink,\n
   or else when method clear() or the
-  \link ~PArray() destructor\endlink is called.
+  \link ~Array() destructor\endlink is called.
 
   \throw OperationNotSupportedException if the element type \c T of
   this array is not a <tt>ArrayElem *</tt>.
 */
 
-template <class T> void PArray<T>::setObjectOwner(bool owner)
+template <class T> void Array<T>::setObjectOwner(bool owner)
 {
-  if (!PArrayTraits::BaseType<T>::IsArrayElemPtr)
-    throw OperationNotSupportedException("PArray<T>::setObjectOwner()\n"
+  if (!ArrayTraits::BaseType<T>::IsArrayElemPtr)
+    throw OperationNotSupportedException("Array<T>::setObjectOwner()\n"
                                    "Can only be owner of ArrayElem *");
 
   objOwner = owner;
@@ -326,7 +326,7 @@ template <class T> void PArray<T>::setObjectOwner(bool owner)
   \note The capacity is never shrunk by this method.
 */
 
-template <class T> void PArray<T>::ensureCapacity(int minCap)
+template <class T> void Array<T>::ensureCapacity(int minCap)
 {
   if (lstCap >= minCap) return;
 
@@ -347,7 +347,7 @@ template <class T> void PArray<T>::ensureCapacity(int minCap)
   Use method ensureCapacity() for that.
 */
 
-template <class T> void PArray<T>::shrinkCapacity(int reserveCap)
+template <class T> void Array<T>::shrinkCapacity(int reserveCap)
 {
   if (reserveCap < 0) reserveCap = 0;
 
@@ -367,8 +367,8 @@ template <class T> void PArray<T>::shrinkCapacity(int reserveCap)
 }
 
 //---------------------------------------------------------------------------
-/** \class PArray
-  A PArray is a generalized ArrayElem array,
+/** \class Array
+  A Array is a generalized ArrayElem array,
   but suitable only for a limited set of types:
 
   \li <b>Signed basic types.</b>\n
@@ -392,9 +392,9 @@ template <class T> void PArray<T>::shrinkCapacity(int reserveCap)
   elements of different types all derived from a base element type \c T,\n
   unless type \c T \b itself is \b abstract.\n
   \n
-  In that case consider a \c PArray of \b pointer to your element type.\n
+  In that case consider a \c Array of \b pointer to your element type.\n
   You may then set the array to be
-  \link Ino::PArray::setObjectOwner(bool) owner\endlink of the objects pointed to.\n
+  \link Ino::Array::setObjectOwner(bool) owner\endlink of the objects pointed to.\n
   Thus you \b can have a polymorphic array.
 
   \li <b>A pointer to a class derived from ArrayElem.</b>\n
@@ -404,13 +404,13 @@ template <class T> void PArray<T>::shrinkCapacity(int reserveCap)
   \n
   The copy constructor or assigment operator will never be called.\n
   \n
-  The PArray can optionally be made to \b own the objects pointed to,
-  see PArray::PArray(bool,int,int) and setObjectOwner(bool).\n
+  The Array can optionally be made to \b own the objects pointed to,
+  see Array::Array(bool,int,int) and setObjectOwner(bool).\n
   In that case operator delete \b will be used to the destroy the objects
   pointed to.
 
   For any other type the
-  \link PArray(int, int) PArray<T> constructor\endlink
+  \link Array(int, int) Array<T> constructor\endlink
   will throw an IllegalArgumentException.
 
   \anchor TypeResolution
@@ -474,7 +474,7 @@ template <class T> void PArray<T>::shrinkCapacity(int reserveCap)
 
 //---------------------------------------------------------------------------
 /** Constructor.
-  Creates a new empty PArray.
+  Creates a new empty Array.
 
   \param initCap The initial capacity of the array, may be zero.
   \param capIncrPercent Grow percentage.\n
@@ -494,7 +494,7 @@ template <class T> void PArray<T>::shrinkCapacity(int reserveCap)
   \note The array will \b not be \link isObjectOwner() owner\endlink.
 */
 
-template <class T> PArray<T>::PArray(int initCap, int capIncrPercent)
+template <class T> Array<T>::Array(int initCap, int capIncrPercent)
 : ArrayElem(), objOwner(false),
   capIncPercent(capIncrPercent),
   lst(NULL), lstSz(0), lstCap(0)
@@ -504,8 +504,8 @@ template <class T> PArray<T>::PArray(int initCap, int capIncrPercent)
   if (tp != typeid(bool) && tp != typeid(short) && tp != typeid(int) &&
       tp != typeid(long) && tp != typeid(float) && tp != typeid(double) &&
       tp != typeid(wchar_t *) && tp != typeid(const wchar_t *) &&
-      !PArrayTraits::BaseType<T>::IsArrayElem)
-        throw IllegalArgumentException("PArray<T>: Unsupported Type");
+      !ArrayTraits::BaseType<T>::IsArrayElem)
+        throw IllegalArgumentException("Array<T>: Unsupported Type");
 
   if (capIncrPercent < 10)  capIncPercent = 10;
   if (capIncrPercent > 200) capIncPercent = 200;
@@ -515,7 +515,7 @@ template <class T> PArray<T>::PArray(int initCap, int capIncrPercent)
 
 //---------------------------------------------------------------------------
 /** Constructor.
-  Creates a new empty PArray.
+  Creates a new empty Array.
 
   \param owner if \c true:
   \li if element type \c T is a pointer to a class derived from ArrayElem
@@ -542,22 +542,22 @@ template <class T> PArray<T>::PArray(int initCap, int capIncrPercent)
   The size() of the new array is zero.
 */
 
-template <class T> PArray<T>::PArray(bool owner,
+template <class T> Array<T>::Array(bool owner,
                                      int initCap, int capIncrPercent)
 : objOwner(owner),
   capIncPercent(capIncrPercent),
   lst(NULL), lstSz(0), lstCap(0)
 {
-  if (objOwner && !PArrayTraits::BaseType<T>::IsArrayElemPtr)
-    throw WrongTypeException("PArray<T>: Can only be owner of ArrayElem *");
+  if (objOwner && !ArrayTraits::BaseType<T>::IsArrayElemPtr)
+    throw WrongTypeException("Array<T>: Can only be owner of ArrayElem *");
 
   const type_info& tp = typeid(T);
 
   if (tp != typeid(bool) && tp != typeid(short) && tp != typeid(int) &&
       tp != typeid(long) && tp != typeid(float) && tp != typeid(double) &&
       tp != typeid(wchar_t *) && tp != typeid(const wchar_t *) &&
-      !PArrayTraits::BaseType<T>::IsArrayElem)
-        throw IllegalArgumentException("PArray<T>: Unsupported Type");
+      !ArrayTraits::BaseType<T>::IsArrayElem)
+        throw IllegalArgumentException("Array<T>: Unsupported Type");
 
   if (capIncrPercent < 10)  capIncPercent = 10;
   if (capIncrPercent > 200) capIncPercent = 200;
@@ -589,10 +589,10 @@ template <class T> PArray<T>::PArray(bool owner,
   return \c false!
 */
 
-template <class T> PArray<T>::PArray(const PArray& cp)
+template <class T> Array<T>::Array(const Array& cp)
 : objOwner(false),
   capIncPercent(cp.capIncPercent),
-  lst(PArrayFuncs::Func<T,TypeVal>::dupLst(cp.lst,cp.lstSz)),
+  lst(ArrayFuncs::Func<T,TypeVal>::dupLst(cp.lst,cp.lstSz)),
   lstSz(cp.lstSz), lstCap(cp.lstSz)
 {
 }
@@ -604,7 +604,7 @@ template <class T> PArray<T>::PArray(const PArray& cp)
   Then the array is discarded.
 */
 
-template <class T> PArray<T>::~PArray()
+template <class T> Array<T>::~Array()
 {
   clear();
   if (lst) free(lst);
@@ -612,7 +612,7 @@ template <class T> PArray<T>::~PArray()
 
 //---------------------------------------------------------------------------
 /** Assigment operator.
-  Assign another PArray to this array.
+  Assign another Array to this array.
 
   \param src The array to assign to this array.
   \return A reference to this array.
@@ -642,14 +642,14 @@ template <class T> PArray<T>::~PArray()
   regardless of the previous setting!
 */
 
-template <class T> PArray<T>& PArray<T>::operator=(const PArray& src)
+template <class T> Array<T>& Array<T>::operator=(const Array& src)
 {
   clear();
   free(lst);
 
   objOwner = false;
 
-  lst    = PArrayFuncs::Func<T,TypeVal>::dupLst(src.lst,src.lstSz);
+  lst    = ArrayFuncs::Func<T,TypeVal>::dupLst(src.lst,src.lstSz);
   lstSz  = src.lstSz;
   lstCap = lstSz;
 
@@ -674,9 +674,9 @@ template <class T> PArray<T>& PArray<T>::operator=(const PArray& src)
   Otherwise all element pointers are simply discarded.\n
 */
 
-template <class T> void PArray<T>::clear()
+template <class T> void Array<T>::clear()
 {
-  if (lst) PArrayFuncs::Func<T,TypeVal>::clearAll(lst,lstSz,objOwner);
+  if (lst) ArrayFuncs::Func<T,TypeVal>::clearAll(lst,lstSz,objOwner);
 
   lstSz = 0;
 }
@@ -704,7 +704,7 @@ template <class T> void PArray<T>::clear()
   The copy constructor of the element type is \b not called.
 */
 
-template <class T> int PArray<T>::add(ArgType item)
+template <class T> int Array<T>::add(ArgType item)
 {
   insert(lstSz,item);
 
@@ -749,14 +749,14 @@ template <class T> int PArray<T>::add(ArgType item)
   The copy constructor of the element type is \b not called.
 */
 
-template <class T> void PArray<T>::set(int idx, ArgType item)
+template <class T> void Array<T>::set(int idx, ArgType item)
 {
   if (idx < 0 || idx > lstSz)
-    throw IndexOutOfBoundsException("PArray<T>::set");
+    throw IndexOutOfBoundsException("Array<T>::set");
 
-  PArrayFuncs::Func<T,TypeVal>::clearItem(lst[idx],objOwner);
+  ArrayFuncs::Func<T,TypeVal>::clearItem(lst[idx],objOwner);
 
-  lst[idx] = PArrayFuncs::Func<T,TypeVal>::newItem(item);
+  lst[idx] = ArrayFuncs::Func<T,TypeVal>::newItem(item);
 }
 
 //---------------------------------------------------------------------------
@@ -787,17 +787,17 @@ template <class T> void PArray<T>::set(int idx, ArgType item)
   The copy constructor of the element type is \b not called.
 */
 
-template <class T> void PArray<T>::insert(int idx, ArgType item)
+template <class T> void Array<T>::insert(int idx, ArgType item)
 {
   if (idx < 0 || idx > lstSz)
-    throw IndexOutOfBoundsException("PArray<T>::insert");
+    throw IndexOutOfBoundsException("Array<T>::insert");
 
   if (lstSz >= lstCap) incCapacity();
 
   memmove(lst+idx+1,lst+idx,(lstSz-idx)*sizeof(ElemType));
   lstSz++;
 
-  lst[idx] = PArrayFuncs::Func<T,TypeVal>::newItem(item);
+  lst[idx] = ArrayFuncs::Func<T,TypeVal>::newItem(item);
 }
 
 //---------------------------------------------------------------------------
@@ -824,12 +824,12 @@ template <class T> void PArray<T>::insert(int idx, ArgType item)
   otherwise the element is simply discarded.
 */
 
-template <class T> void PArray<T>::remove(int idx)
+template <class T> void Array<T>::remove(int idx)
 {
   if (idx < 0 || idx >= lstSz)
-    throw IndexOutOfBoundsException("PArray<T>::remove");
+    throw IndexOutOfBoundsException("Array<T>::remove");
 
-  PArrayFuncs::Func<T,TypeVal>::clearItem(lst[idx],objOwner);
+  ArrayFuncs::Func<T,TypeVal>::clearItem(lst[idx],objOwner);
 
   lstSz--;
   memmove(lst+idx,lst+idx+1,(lstSz-idx)*sizeof(ElemType));
@@ -850,13 +850,13 @@ template <class T> void PArray<T>::remove(int idx)
   So no copy constructor or destructor will ever be called.
 */
 
-template <class T> void PArray<T>::swap(int idx1, int idx2)
+template <class T> void Array<T>::swap(int idx1, int idx2)
 {
   if (idx1 < 0 || idx1 >= lstSz)
-    throw IndexOutOfBoundsException("PArray<T>::swap 1");
+    throw IndexOutOfBoundsException("Array<T>::swap 1");
 
   if (idx2 < 0 || idx2 >= lstSz)
-    throw IndexOutOfBoundsException("PArray<T>::swap 2");
+    throw IndexOutOfBoundsException("Array<T>::swap 2");
 
   ElemType el = lst[idx1];
   lst[idx1] = lst[idx2];
@@ -881,12 +881,12 @@ template <class T> void PArray<T>::swap(int idx1, int idx2)
   The original object must then eventually be deleted by yourself.
 */
 
-template <class T> typename PArray<T>::ReturnType PArray<T>::get(int idx)
+template <class T> typename Array<T>::ReturnType Array<T>::get(int idx)
 {
   if (idx < 0 || idx >= lstSz)
-    throw IndexOutOfBoundsException("PArray<T>::get");
+    throw IndexOutOfBoundsException("Array<T>::get");
 
-  return PArrayFuncs::Func<T,TypeVal>::getItem(lst[idx]);
+  return ArrayFuncs::Func<T,TypeVal>::getItem(lst[idx]);
 }
 
 //---------------------------------------------------------------------------
@@ -902,13 +902,13 @@ template <class T> typename PArray<T>::ReturnType PArray<T>::get(int idx)
   \see \ref TypeResolution
 */
 
-template <class T> typename PArray<T>::ConstReturnType
-                                         PArray<T>::get(int idx) const
+template <class T> typename Array<T>::ConstReturnType
+                                         Array<T>::get(int idx) const
 {
   if (idx < 0 || idx >= lstSz)
-    throw IndexOutOfBoundsException("PArray<T>::get const");
+    throw IndexOutOfBoundsException("Array<T>::get const");
 
-  ConstReturnType v = PArrayFuncs::Func<T,TypeVal>::getItem(lst[idx]);
+  ConstReturnType v = ArrayFuncs::Func<T,TypeVal>::getItem(lst[idx]);
 
   return v;
 }
@@ -926,13 +926,13 @@ template <class T> typename PArray<T>::ConstReturnType
   \see \ref TypeResolution
 */
 
-template <class T> typename PArray<T>::ConstReturnType
-                                    PArray<T>::operator[](int idx) const
+template <class T> typename Array<T>::ConstReturnType
+                                    Array<T>::operator[](int idx) const
 {
   if (idx < 0 || idx >= lstSz)
-    throw IndexOutOfBoundsException("PArray<T>::operator[] const");
+    throw IndexOutOfBoundsException("Array<T>::operator[] const");
 
-  ConstReturnType v = PArrayFuncs::Func<T,TypeVal>::getItem(lst[idx]);
+  ConstReturnType v = ArrayFuncs::Func<T,TypeVal>::getItem(lst[idx]);
 
   return v;
 }
@@ -955,13 +955,13 @@ template <class T> typename PArray<T>::ConstReturnType
   The original object must then eventually be deleted by yourself.
 */
 
-template <class T> typename PArray<T>::ReturnType
-                                    PArray<T>::operator[](int idx)
+template <class T> typename Array<T>::ReturnType
+                                    Array<T>::operator[](int idx)
 {
   if (idx < 0 || idx >= lstSz)
-    throw IndexOutOfBoundsException("PArray<T>::operator[]");
+    throw IndexOutOfBoundsException("Array<T>::operator[]");
 
-  return PArrayFuncs::Func<T,TypeVal>::getItem(lst[idx]);
+  return ArrayFuncs::Func<T,TypeVal>::getItem(lst[idx]);
 }
 
 //---------------------------------------------------------------------------
@@ -985,7 +985,7 @@ template <class T> typename PArray<T>::ReturnType
 */
 
 template <class T> template <class LessThan>
-                                         void PArray<T>::sort(LessThan& lt)
+                                         void Array<T>::sort(LessThan& lt)
 {
   if (lstSz < 2) return;
 
@@ -1014,7 +1014,7 @@ template <class T> template <class LessThan>
 */
 
 template <class T> template <class LessThan> 
-                                    void PArray<T>::stableSort(LessThan *lt)
+                                    void Array<T>::stableSort(LessThan *lt)
 {
   if (lstSz < 2) return;
 

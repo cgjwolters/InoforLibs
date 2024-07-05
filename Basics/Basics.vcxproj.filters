@@ -55,13 +55,13 @@
     <ClInclude Include="..\inc\1.0\Vec.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\1.0\PArray.h">
+    <ClInclude Include="..\inc\1.0\Array.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\1.0\PArrayImp.h">
+    <ClInclude Include="..\inc\1.0\ArrayImp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\1.0\PArrayTraits.h">
+    <ClInclude Include="..\inc\1.0\ArrayTraits.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

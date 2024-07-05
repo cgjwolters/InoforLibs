@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Basics", "..\Basics\Basics.vcxproj", "{E3B9C214-EA03-4C0E-8DD9-827DD6AC10F0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Basics", "Basics\Basics.vcxproj", "{E3B9C214-EA03-4C0E-8DD9-827DD6AC10F0}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cppstd", "..\cppstd\cppstd.vcxproj", "{B344D9CC-C774-4CC8-AC82-25623944A418}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cppstd", "cppstd\cppstd.vcxproj", "{B344D9CC-C774-4CC8-AC82-25623944A418}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Matrix", "..\Matrix\Matrix.vcxproj", "{D1325B95-FF6F-4651-8522-6BE9521FC92C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Matrix", "Matrix\Matrix.vcxproj", "{D1325B95-FF6F-4651-8522-6BE9521FC92C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

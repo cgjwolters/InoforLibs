@@ -9,14 +9,14 @@
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
 
-#ifndef INOPARRAY_INC
-#error Do not include directly, include PArray.h instead
+#ifndef INOARRAY_INC
+#error Do not include directly, include Array.h instead
 #endif
 
 namespace Ino
 {
 
-namespace PArrayTraits
+namespace ArrayTraits
 {
 
 //---------------------------------------------------------------------------
@@ -94,7 +94,7 @@ template <class T> struct Type<T,3>
   typedef wchar_t *ElemType;
 };
 
-} // namespace PArrayTraits
+} // namespace ArrayTraits
 } // namespace Ino
 
 //---------------------------------------------------------------------------
