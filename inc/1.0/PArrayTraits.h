@@ -1,9 +1,9 @@
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
-//------- Inofor Persistable Array Template Type Traits ---------------------
+//------- Inofor Array Template Type Traits ---------------------------------
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
-//------- Copyright Inofor Hoek Aut BV Mar 2010 -----------------------------
+//------- Copyright Inofor Hoek Aut BV Mar 2010, June 2024 ------------------
 //---------------------------------------------------------------------------
 //------- C. Wolters --------------------------------------------------------
 //---------------------------------------------------------------------------
@@ -15,8 +15,6 @@
 
 namespace Ino
 {
-
-  class Persistable;
 
 namespace PArrayTraits
 {
@@ -38,20 +36,20 @@ template <class T> struct BaseType
   struct No  { char c[8]; };
 
   static No  m(...);
-  static Yes m(const Persistable *p);
+  static Yes m(const ArrayElem *);
 
   static typename Deref<T>::Type *t;
-  static const bool IsPersistRef = __is_class(T) &&
+  static const bool IsArrayElemRef = __is_class(T) &&
                                          sizeof(m(t)) == sizeof(Yes);
-  static const bool IsPersistPtr = !IsPersistRef &&
+  static const bool IsArrayElemPtr = !IsArrayElemRef &&
                                    (__is_class(typename Deref<T>::Type) &&
                                                 sizeof(m(t)) == sizeof(Yes));
-  static const bool IsPersist = IsPersistRef || IsPersistPtr;
+  static const bool IsArrayElem = IsArrayElemRef || IsArrayElemPtr;
 
   static const bool IsString = StringT<typename Deref<T>::Type>::value;
 
   static const int TypeVal =
-                     IsPersistPtr ? 1 : IsPersistRef ? 2 : IsString ? 3 : 0;
+                     IsArrayElemPtr ? 1 : IsArrayElemRef ? 2 : IsString ? 3 : 0;
 };
 
 //---------------------------------------------------------------------------
@@ -65,7 +63,7 @@ template <class T, int typeVal> struct Type {
 };
 
 //---------------------------------------------------------------------------
-// Pointer to class derived from Persistable
+// Pointer to class derived from ArrayElem
 
 template <class T> struct Type<T,1> {
   typedef T ArgType;
@@ -75,7 +73,7 @@ template <class T> struct Type<T,1> {
 };
 
 //---------------------------------------------------------------------------
-// Class derived from Persistable
+// Class derived from ArrayElem
 
 template <class T> struct Type<T,2>
 {

@@ -1,9 +1,9 @@
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
-//------- Inofor Persistable Array Template ---------------------------------
+//------- Inofor Array Template ---------------------------------------------
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
-//------- Copyright Inofor Hoek Aut BV Mar 2010 -----------------------------
+//------- Copyright Inofor Hoek Aut BV Mar 2010, June 2024 ------------------
 //---------------------------------------------------------------------------
 //------- C. Wolters --------------------------------------------------------
 //---------------------------------------------------------------------------
@@ -14,11 +14,11 @@
 //                         float, double, wchar_t*, const wchar_t*
 //  (Unsigned basic types are not acceptable)
 //
-//  Or else T or *T must be derived from Persistable
+//  Or else T or *T must be derived from ArrayElem
 //  An exception will be thrown if T is of some other type!
 
 // Type Overview
-//   (AppClass is some class derived from Peristable (or MainPersistable))
+//   (AppClass is some class derived from ArrayElem
 
 // Type T           ArgType          ReturnType       ConstReturnType
 // --------------------------------------------------------------------------
@@ -55,6 +55,14 @@
 #ifndef INOPARRAY_INC
 #define INOPARRAY_INC
 
+#include "Exceptions.h"
+
+namespace Ino
+{
+  class ArrayElem
+  {
+  };
+}
 #include "PArrayTraits.h"
 
 namespace Ino
@@ -62,7 +70,7 @@ namespace Ino
 
 //---------------------------------------------------------------------------
 
-template <class T> class PArray// : public MainPersistable
+template <class T> class PArray : public ArrayElem
 {
   static const int TypeVal = PArrayTraits::BaseType<T>::TypeVal;
   typedef typename PArrayTraits::Type<T,TypeVal>::ElemType ElemType;

@@ -1,9 +1,9 @@
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
-//------- Inofor Persistable Array Template Implementation ------------------
+//------- Inofor Array Template Implementation ------------------------------
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
-//------- Copyright Inofor Hoek Aut BV Mar 2010 -----------------------------
+//------- Copyright Inofor Hoek Aut BV Mar 2010, June 2024 ------------------
 //---------------------------------------------------------------------------
 //------- C. Wolters --------------------------------------------------------
 //---------------------------------------------------------------------------
@@ -17,6 +17,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <typeinfo>
 
 #ifdef _WIN32
 #include <algorithm>
@@ -33,20 +34,20 @@ namespace Ino
 /** \file PArray.h
   This file contains the definition of the \ref Ino::PArray template.
 
-  A \ref Ino::PArray is a generalized Persistable array,
+  A \ref Ino::PArray is a generalized array,
   but suitable only for a limited set of types:
 
   \li <b>Signed basic types.</b>\n
   The array element can be of type:
   <tt>bool, short, int, long, wchar_t, float</tt> or \c double.\n\n
   \c Unsigned types are \em not supported due to the restrictions
-  imposed by the Persistable base class.
+  imposed by the ArrayElem base class.
 
   \li <b>Unicode string (i.e. type <tt>wchar_t *)</tt>.</b>\n
   In this case the array will manage and \b own a \b copy
   of any string added.
 
-  \li <b>A class derived from Persistable.</b>\n
+  \li <b>A class derived from ArrayElem.</b>\n
   The array will manage and \b own a \b copy of any object added.\n\n
   For this to work the class must have an (implicit or explicit)
   copy constructor or,\n
@@ -62,7 +63,7 @@ namespace Ino
   \link Ino::PArray::setObjectOwner(bool) owner\endlink of the objects pointed to.\n
   Thus you \b can have a polymorphic array.
   
-  \li <b>A pointer to a class derived from Persistable.</b>\n
+  \li <b>A pointer to a class derived from ArrayElem.</b>\n
   Such a pointer is handled the same as a basic type, i.e only\n
   the pointer value itself is handled by the array, unless this array
   \b owns the object: see below.\n\n
@@ -78,25 +79,8 @@ namespace Ino
   \link Ino::PArray::PArray(int, int) PArray<T> constructor\endlink
   will throw an Ino::IllegalArgumentException.
 
-  \par <b>Warning: Persistence Restore</b>
-
-  If a \ref Ino::PArray "PArray" is restored from a stream
-  (using \ref Ino::PersistentReader "PersistentReader") and
-  the following applies:\n\n
-  \li The element type is a class derived from
-  \ref Ino::Persistable "Persistable"
-  \li The stream contains one or more elements of a type
-  (derived from \ref Ino::Persistable "Persistable") not
-  (yet) known\n
-  to the \ref Ino::PersistentReader "PersistentReader"
-  (see \ref Ino::PersistentTypeDef "PersistentTypeDef")\n\n
-
-  Then such elements are silently \b removed from the array and the
-  \ref Ino::PArray::size() "size()" of the array\n
-  may therefore be less than would otherwise have been expected.
-
   \author C. Wolters
-  \date Mar 2010
+  \date Mar 2010, June 2024
 */
 
 namespace PArrayFuncs
@@ -136,7 +120,7 @@ template <class T, int typeVal> struct Func
 };
 
 //---------------------------------------------------------------------------
-// T is pointer to Persistable
+// T is pointer to ArrayElem
 
 template <class T> struct Func<T,1>
 {
@@ -169,7 +153,7 @@ template <class T> struct Func<T,1>
 };
 
 //---------------------------------------------------------------------------
-// T is type derived from Persistable
+// T is type derived from ArrayElem
 
 template <class T> struct Func<T,2>
 {
@@ -271,11 +255,11 @@ template <class T> void PArray<T>::incCapacity()
 */
 
 //---------------------------------------------------------------------------
-/** Returns whether this array owns the <tt>Persistable *</tt> 
+/** Returns whether this array owns the <tt>ArrayElem *</tt> 
     objects in this list.
 
   This method must only be called if type \c T is
-  <tt>Persistable *</tt>&nbsp;!\n
+  <tt>ArrayElem *</tt>&nbsp;!\n
   For other types an OperationNotSupportedException will thrown.
 
   \return if \c true, then the objects in this array will be deleted when
@@ -286,24 +270,24 @@ template <class T> void PArray<T>::incCapacity()
   \link ~PArray() destructor\endlink is called.
 
   \throw OperationNotSupportedException if the element type \c T of
-  this array is not a <tt>Persistable *</tt>.
+  this array is not an <tt>ArrayElem *</tt>.
 */
 
 template <class T> bool PArray<T>::isObjectOwner() const
 {
-  if (!PArrayTraits::BaseType<T>::IsPersistPtr)
+  if (!PArrayTraits::BaseType<T>::IsArrayElemPtr)
     throw OperationNotSupportedException("PArray<T>::isObjectOwner()\n"
-                                   "Can only be owner of Persistable *");
+                                   "Can only be owner of ArrayElem *");
 
   return objOwner;
 }
 
 //---------------------------------------------------------------------------
-/** Set whether this array owns the <tt>Persistable *</tt> 
+/** Set whether this array owns the <tt>ArrayElem *</tt> 
     objects in this list.
 
   This method must only be called if type \c T
-  is <tt>Persistable *</tt>&nbsp;!\n
+  is <tt>ArrayElem *</tt>&nbsp;!\n
   For other types an OperationNotSupportedException will be thrown.
 
   \param owner if \c true then the objects in this array will be deleted when
@@ -314,14 +298,14 @@ template <class T> bool PArray<T>::isObjectOwner() const
   \link ~PArray() destructor\endlink is called.
 
   \throw OperationNotSupportedException if the element type \c T of
-  this array is not a <tt>Persistable *</tt>.
+  this array is not a <tt>ArrayElem *</tt>.
 */
 
 template <class T> void PArray<T>::setObjectOwner(bool owner)
 {
-  if (!PArrayTraits::BaseType<T>::IsPersistPtr)
+  if (!PArrayTraits::BaseType<T>::IsArrayElemPtr)
     throw OperationNotSupportedException("PArray<T>::setObjectOwner()\n"
-                                   "Can only be owner of Persistable *");
+                                   "Can only be owner of ArrayElem *");
 
   objOwner = owner;
 }
@@ -384,20 +368,20 @@ template <class T> void PArray<T>::shrinkCapacity(int reserveCap)
 
 //---------------------------------------------------------------------------
 /** \class PArray
-  A PArray is a generalized Persistable array,
+  A PArray is a generalized ArrayElem array,
   but suitable only for a limited set of types:
 
   \li <b>Signed basic types.</b>\n
   The array element can be of type:
   <tt>bool, short, int, long, wchar_t, float</tt> or \c double.\n\n
   \c Unsigned types are \em not supported due to the restrictions
-  imposed by the Persistable base class.
+  imposed by the ArrayElem base class.
 
   \li <b>Unicode string (i.e. type <tt>wchar_t *)</tt>.</b>\n
   In this case the array will manage and \b own a \b copy
   of any string added.
 
-  \li <b>A class derived from Persistable.</b>\n
+  \li <b>A class derived from ArrayElem.</b>\n
   The array will manage and \b own a \b copy of any object added.\n\n
   For this to work the class must have an (implicit or explicit)
   copy constructor or,\n
@@ -413,7 +397,7 @@ template <class T> void PArray<T>::shrinkCapacity(int reserveCap)
   \link Ino::PArray::setObjectOwner(bool) owner\endlink of the objects pointed to.\n
   Thus you \b can have a polymorphic array.
 
-  \li <b>A pointer to a class derived from Persistable.</b>\n
+  \li <b>A pointer to a class derived from ArrayElem.</b>\n
   Such a pointer is handled the same as a basic type, i.e only\n
   the pointer value itself is handled by the array, unless the array
   \b owns the objects, see below.\n
@@ -436,7 +420,7 @@ template <class T> void PArray<T>::shrinkCapacity(int reserveCap)
   Below the various argument and return types are shown in relation to the
   template type T.\n\n
 
-  (\c AppClass is some class derived from \c Persistable (or \c MainPersistable))\n\n
+  (\c AppClass is some class derived from \c ArrayElem
 
   <table border="1" cellpadding="4" cellspacing="4">
   <tr><th align="left">Type T</th>          <th align="left">ArgType</th>
@@ -483,23 +467,9 @@ template <class T> void PArray<T>::shrinkCapacity(int reserveCap)
   No copy constructor will ever be called.\n
   Depending on whether this array is \link isObjectOwner() owner\endlink
   of the elements the destructor \b may be called.
-
- \par <b>Warning: Persistence Restore</b>
-
-  If a PArray is restored from a stream (using PersistentReader) and
-  the following applies:\n\n
-  \li The element type is a class derived from Persistable
-  \li The stream contains one or more elements of a type
-  (derived from Persistable) not (yet) known\n
-  to the PersistentReader
-  (see \ref Ino::PersistentTypeDef "PersistentTypeDef")\n\n
-
-  Then such elements are silently \b removed from the array and the size() of
-  the array\n
-  may therefore be less than would otherwise have been expected.
-
+   
   \author C. Wolters
-  \date Mar 2010
+  \date Mar 2010, June 2024
 */
 
 //---------------------------------------------------------------------------
@@ -511,7 +481,7 @@ template <class T> void PArray<T>::shrinkCapacity(int reserveCap)
 
   \throw IllegalArgumentException
   If the element type is not a basic type, a string <tt>wchar_t *</tt> or\n
-  a (pointer to) a class derived from Persistable.
+  a (pointer to) a class derived from ArrayElem.
 
   \p capIncrPercent is the \em percentage by which the capacity will
   grow if more space is required.\n
@@ -525,7 +495,7 @@ template <class T> void PArray<T>::shrinkCapacity(int reserveCap)
 */
 
 template <class T> PArray<T>::PArray(int initCap, int capIncrPercent)
-: MainPersistable(), objOwner(false),
+: ArrayElem(), objOwner(false),
   capIncPercent(capIncrPercent),
   lst(NULL), lstSz(0), lstCap(0)
 {
@@ -534,7 +504,7 @@ template <class T> PArray<T>::PArray(int initCap, int capIncrPercent)
   if (tp != typeid(bool) && tp != typeid(short) && tp != typeid(int) &&
       tp != typeid(long) && tp != typeid(float) && tp != typeid(double) &&
       tp != typeid(wchar_t *) && tp != typeid(const wchar_t *) &&
-      !PArrayTraits::BaseType<T>::IsPersist)
+      !PArrayTraits::BaseType<T>::IsArrayElem)
         throw IllegalArgumentException("PArray<T>: Unsupported Type");
 
   if (capIncrPercent < 10)  capIncPercent = 10;
@@ -548,8 +518,8 @@ template <class T> PArray<T>::PArray(int initCap, int capIncrPercent)
   Creates a new empty PArray.
 
   \param owner if \c true:
-  \li if element type \c T is a pointer to a class derived from Persistable
-  (<tt>Persistable *</tt>) then this array owns the elements pointed
+  \li if element type \c T is a pointer to a class derived from ArrayElem
+  (<tt>ArrayElem *</tt>) then this array owns the elements pointed
   at (and will delete them when required).<br>
   \li otherwise throws a WrongTypeException.<br>
 
@@ -557,11 +527,11 @@ template <class T> PArray<T>::PArray(int initCap, int capIncrPercent)
   \param capIncrPercent Grow percentage.\n
 
   \throw WrongTypeException if \a owner is \c true and element
-  type \c T is not a pointer to a class derived from Persistable.
+  type \c T is not a pointer to a class derived from ArrayElem.
 
   \throw IllegalArgumentException
   If the element type is not a basic type, a string <tt>wchar_t *</tt> or\n
-  a (pointer to) a class derived from Persistable.
+  a (pointer to) a class derived from ArrayElem.
 
   \p capIncrPercent is the \em percentage by which the capacity will
   grow if more space is required.\n
@@ -574,19 +544,19 @@ template <class T> PArray<T>::PArray(int initCap, int capIncrPercent)
 
 template <class T> PArray<T>::PArray(bool owner,
                                      int initCap, int capIncrPercent)
-: MainPersistable(), objOwner(owner),
+: objOwner(owner),
   capIncPercent(capIncrPercent),
   lst(NULL), lstSz(0), lstCap(0)
 {
-  if (objOwner && !PArrayTraits::BaseType<T>::IsPersistPtr)
-    throw WrongTypeException("PArray<T>: Can only be owner of Persistable *");
+  if (objOwner && !PArrayTraits::BaseType<T>::IsArrayElemPtr)
+    throw WrongTypeException("PArray<T>: Can only be owner of ArrayElem *");
 
   const type_info& tp = typeid(T);
 
   if (tp != typeid(bool) && tp != typeid(short) && tp != typeid(int) &&
       tp != typeid(long) && tp != typeid(float) && tp != typeid(double) &&
       tp != typeid(wchar_t *) && tp != typeid(const wchar_t *) &&
-      !PArrayTraits::BaseType<T>::IsPersist)
+      !PArrayTraits::BaseType<T>::IsArrayElem)
         throw IllegalArgumentException("PArray<T>: Unsupported Type");
 
   if (capIncrPercent < 10)  capIncPercent = 10;
@@ -603,7 +573,7 @@ template <class T> PArray<T>::PArray(bool owner,
 
   If the element type is:
 
-  \li <b>A class derived from Persistable.</b>\n
+  \li <b>A class derived from ArrayElem.</b>\n
   To copy the elements the copy constructor of each element is called\n
   or, in case the element type is abstract, method <tt>clone()</tt>
   is called for each element.
@@ -611,7 +581,7 @@ template <class T> PArray<T>::PArray(bool owner,
   \li <b>A unicode string <tt>wchar_t *</tt></b>.\n
   To copy the elements each string is copied (if not \c NULL).
 
-  \li <b>A pointer to a class derived from Persistable.</b>\n
+  \li <b>A pointer to a class derived from ArrayElem.</b>\n
   In this case only the pointers are copied.\n
   The copy constructor of the element type is \b not called.
 
@@ -620,7 +590,7 @@ template <class T> PArray<T>::PArray(bool owner,
 */
 
 template <class T> PArray<T>::PArray(const PArray& cp)
-: MainPersistable(cp), objOwner(false),
+: objOwner(false),
   capIncPercent(cp.capIncPercent),
   lst(PArrayFuncs::Func<T,TypeVal>::dupLst(cp.lst,cp.lstSz)),
   lstSz(cp.lstSz), lstCap(cp.lstSz)
@@ -649,7 +619,7 @@ template <class T> PArray<T>::~PArray()
 
   If the element type is:
 
-  \li <b>A class derived from Persistable.</b>\n
+  \li <b>A class derived from ArrayElem.</b>\n
   First the destructor of every element in this array is called.\n\n
   Then the copy constructor is called on each element in \p src or,\n
   if the element type is abstract, method <tt>clone()</tt> is used instead
@@ -662,7 +632,7 @@ template <class T> PArray<T>::~PArray()
   Then for every element in \p src that is not \c NULL, a copy of
   the string in \p src is assigned to this array.
 
-  \li <b>A pointer to a class derived from Persistable.</b>\n
+  \li <b>A pointer to a class derived from ArrayElem.</b>\n
   If method isObjectOwner() would return \c true operator \c delete
   is called on every element.\n
   Then all element pointers are simply copied from the \a src array.
@@ -691,14 +661,14 @@ template <class T> PArray<T>& PArray<T>::operator=(const PArray& src)
 
   If the element type is:
 
-  \li <b>A class derived from Persistable.</b>\n
+  \li <b>A class derived from ArrayElem.</b>\n
   The destructor of every element is called.
 
   \li <b>A unicode string <tt>wchar_t *</tt></b>.\n
   For every element that is not \c NULL, operator <tt>delete[]</tt>
   is called.
 
-  \li <b>A pointer to a class derived from Persistable.</b>\n
+  \li <b>A pointer to a class derived from ArrayElem.</b>\n
   If method isObjectOwner() would return \c true operator \c delete
   is called on every element.\n
   Otherwise all element pointers are simply discarded.\n
@@ -720,7 +690,7 @@ template <class T> void PArray<T>::clear()
 
   If the element type is:
 
-  \li <b>A class derived from Persistable.</b>\n
+  \li <b>A class derived from ArrayElem.</b>\n
   A \b copy of \p item is added either by calling copy constructor of
   \p item or,\n
   in case the element type is abstract, method
@@ -729,7 +699,7 @@ template <class T> void PArray<T>::clear()
   \li <b>A unicode string <tt>wchar_t *</tt></b>.\n
   A copy of \p item is added to this array (if \p item is not \c NULL).
 
-  \li <b>A pointer to a class derived from Persistable.</b>\n
+  \li <b>A pointer to a class derived from ArrayElem.</b>\n
   In this case only the pointer \p item is copied.\n
   The copy constructor of the element type is \b not called.
 */
@@ -760,7 +730,7 @@ template <class T> int PArray<T>::add(ArgType item)
 
   If the element type is:
 
-  \li <b>A class derived from Persistable.</b>\n
+  \li <b>A class derived from ArrayElem.</b>\n
   First the destructor of the element at index \p idx is called.\n\n
   Then a \b copy of \p item is assigned to the element at index \p idx,
   either by calling the copy constructor of \p item or,
@@ -772,7 +742,7 @@ template <class T> int PArray<T>::add(ArgType item)
   index \p idx (if not \c NULL).\n
   Then a copy of \p item is assigned to the element at index \p idx.
 
-  \li <b>A pointer to a class derived from Persistable.</b>\n
+  \li <b>A pointer to a class derived from ArrayElem.</b>\n
   If method isObjectOwner() would return \c true, operator \c delete is
   called on the element at index \a idx.\n
   Then the pointer \a item is assigned to the element at index \a idx.\n
@@ -803,7 +773,7 @@ template <class T> void PArray<T>::set(int idx, ArgType item)
 
   If the element type is:
 
-  \li <b>A class derived from Persistable.</b>\n
+  \li <b>A class derived from ArrayElem.</b>\n
   A \b copy if \p item is added either by calling the copy constructor of
   \p item or,\n
   in case the element type is abstract, by calling
@@ -812,7 +782,7 @@ template <class T> void PArray<T>::set(int idx, ArgType item)
   \li <b>A unicode string <tt>wchar_t *</tt></b>.\n
   A copy of \p item is added to this array (if \p item is not \c NULL).
 
-  \li <b>A pointer to a class derived from Persistable.</b>\n
+  \li <b>A pointer to a class derived from ArrayElem.</b>\n
   In this case only the pointer \p item is copied.\n
   The copy constructor of the element type is \b not called.
 */
@@ -841,14 +811,14 @@ template <class T> void PArray<T>::insert(int idx, ArgType item)
 
   If the element type is:
 
-  \li <b>A class derived from Persistable.</b>\n
+  \li <b>A class derived from ArrayElem.</b>\n
   The destructor of the element at index \p idx is called.\n\n
 
   \li <b>A unicode string <tt>wchar_t *</tt></b>.\n
   operator <tt>delete[]</tt> is called on the element at
   index \p idx (if not \c NULL).
 
-  \li <b>A pointer to a class derived from Persistable.</b>\n
+  \li <b>A pointer to a class derived from ArrayElem.</b>\n
   If method isObjectOwner() would return \c true operator \c delete
   is called on the element at index \a idx.\n
   otherwise the element is simply discarded.
@@ -875,7 +845,7 @@ template <class T> void PArray<T>::remove(int idx)
   if <tt>idx1 < 0 || idx1 >= size()</tt> or\n
   &nbsp;&nbsp;&nbsp;<tt>idx2 < 0 || idx2 >= size()</tt>
 
-  Even if the element type is a class derived from Persistable
+  Even if the element type is a class derived from ArrayElem
   the swap merely has to exchange two pointers.\n
   So no copy constructor or destructor will ever be called.
 */
@@ -905,7 +875,7 @@ template <class T> void PArray<T>::swap(int idx1, int idx2)
 
   \see \ref TypeResolution
 
-  \note If the element type \c T is a pointer to Persistable and
+  \note If the element type \c T is a pointer to ArrayElem and
   isObjectOwner() returns \c true, beware of memory management issues.\n
   It is possible to directy assign another object to an element in the list.\n
   The original object must then eventually be deleted by yourself.
@@ -925,7 +895,7 @@ template <class T> typename PArray<T>::ReturnType PArray<T>::get(int idx)
   \param idx The index of the element to return.
   \return The element at index \p idx or,\n
   if the element type is a class
-  derived from Persistable a \c const \em reference to the element.
+  derived from ArrayElem a \c const \em reference to the element.
 
   \throw IndexOutOfBoundsException If \p idx < 0 || \p idx >= size().
 
@@ -949,7 +919,7 @@ template <class T> typename PArray<T>::ConstReturnType
   \param idx The index of the element to return.
   \return The element at index \p idx or,\n
   if the element type is a class
-  derived from Persistable a \c const \em reference to the element.
+  derived from ArrayElem a \c const \em reference to the element.
 
   \throw IndexOutOfBoundsException If \p idx < 0 || \p idx >= size().
 
@@ -979,7 +949,7 @@ template <class T> typename PArray<T>::ConstReturnType
 
   \see \ref TypeResolution
 
-  \note If the element type \c T is a pointer to Persistable and
+  \note If the element type \c T is a pointer to ArrayElem and
   isObjectOwner() returns \c true, beware of memory management issues.\n
   It is possible to directy assign another object to an element in the list.\n
   The original object must then eventually be deleted by yourself.
@@ -1052,18 +1022,6 @@ template <class T> template <class LessThan>
 }
 #endif
 
-//---------------------------------------------------------------------------
-// Persistence Section
-
-//---------------------------------------------------------------------------
-
-namespace PArrayFuncs
-{
-
-/**
- @}
-*/
-
-} // namespace Ino
+}
 
 //---------------------------------------------------------------------------
