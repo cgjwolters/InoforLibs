@@ -83,11 +83,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Matrix.cpp" />
-    <ClCompile Include="src\Svd.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\inc\1.0\Matrix.h" />
-    <ClInclude Include="..\inc\1.0\Svd.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
