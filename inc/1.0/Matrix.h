@@ -74,11 +74,6 @@ class Matrix
 
   Matrix(int rows, int columns, double *elems); // For PMatrix
 
-  bool solveLs(int rows, int cols, double **vt,
-               double **rhs, int rhs_cols, double **sol,
-                                double relTol, int& rank, int& svd_iter);
-
-
 public:
   Matrix(int rows, int cols, bool zeroInit=true);
   Matrix(const Matrix& cp);
@@ -105,33 +100,8 @@ public:
   void transpose(Matrix& transposedMat) const;
   void multiply(const Matrix& b, Matrix& result) const;
 
-  void upperTriang(int rows, int cols, Matrix& rhs, int rhsCols,
-                                             Ino::ProgressReporter *rep=NULL);
-
-  bool solveSvd(int rows, int cols, Matrix& vt, int& rank, int& svd_iter);
-
-  bool solveSvd(int rows, int cols, Matrix& vt, Matrix& u,
-                                      bool fullU, int& rank, int& svd_iter);
-
-  bool solveLs(int rows, int cols, Matrix& vt, Vector& rhs, Vector& sol,
-                                   double relTol, int& rank, int& svd_iter);
-
-  bool solveLs(int rows, int cols, Matrix& vt, Matrix& rhs, Matrix& sol,
-                                   double relTol, int& rank, int& svd_iter);
-
-  bool invertGauss(Matrix& invMat);
-  bool invertMoorePenrose(Matrix& invMat);
-
   void solveLDLT(Vector& b);
   void solveLDLT(Matrix& rhs);
-
-  static bool gSvd2(Matrix& matA, Matrix& matB,
-                    int rowsA, int rowsB, int cols,
-                    Matrix& rhsA, Matrix& rhsB, int rhsCols, double tol,
-                    Matrix& q, Vector& alpha, Vector& beta,
-                    Ino::ProgressReporter *rep=NULL);
-
-  friend class PMatrix;
 };
 
 } // namespace Ino

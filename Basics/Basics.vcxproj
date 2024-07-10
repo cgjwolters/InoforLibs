@@ -58,7 +58,7 @@
       <AdditionalIncludeDirectories>.;inc;inc\zlib;..\inc\1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -88,7 +88,7 @@
       <AdditionalIncludeDirectories>.;inc;inc\zlib;..\inc\1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -113,7 +113,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Basics.cpp" />
-    <ClCompile Include="src\NonLinLsSolver.cpp" />
     <ClCompile Include="src\ProgressReporter.cpp" />
     <ClCompile Include="src\Rect.cpp" />
     <ClCompile Include="src\Trf.cpp" />
@@ -126,7 +125,6 @@
     <ClInclude Include="..\inc\1.0\ArrayTraits.h" />
     <ClInclude Include="..\inc\1.0\Base64.h" />
     <ClInclude Include="..\inc\1.0\Basics.h" />
-    <ClInclude Include="..\inc\1.0\NonLinLsSolver.h" />
     <ClInclude Include="..\inc\1.0\Rect.h" />
     <ClInclude Include="..\inc\1.0\Trf.h" />
     <ClInclude Include="..\inc\1.0\TrfTrain.h" />

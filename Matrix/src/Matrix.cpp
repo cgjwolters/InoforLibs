@@ -10,7 +10,6 @@
 
 #include "Matrix.h"
 #include "Exceptions.h"
-#include "Svd.h"
 
 #include <stddef.h>
 #include <math.h>
@@ -364,173 +363,6 @@ void Matrix::clear()
 
 //---------------------------------------------------------------------------
 
-void Matrix::upperTriang(int rows, int cols, Matrix& rhs, int rhsCols,
-                                                  Ino::ProgressReporter *rep)
-{
-  if (rws < rows || cls < cols || rhs.rws < rws || cols < 1 || rhsCols < 1) 
-                      throw IllegalArgumentException("Matrix2::upperTriang");
-
-  UpperTriang(mat,rows,cols,NULL,false,rhs.mat,rhsCols,rep);
-}
-
-//---------------------------------------------------------------------------
-
-bool Matrix::solveLs(int rows, int cols, double **vt,
-                             double **rhs, int rhs_cols, double **sol,
-                                   double relTol, int& rank, int& svd_iter)
-{
-  relTol = fabs(relTol);
-  if (relTol < Double_Precision) relTol = Double_Precision;
-
-  if (rows < cols) throw IllegalArgumentException("Matrix::solveLs");
-
-  if (!Svd(mat,rows,cols,NULL,false,vt,rhs,rhs_cols,svd_iter)) return false;
-
-  // The square matrix norm of mat is equal to the absolute value 
-  // of the largest singular value...
-
-  double norm2 = 0.0;
-
-  for (int i=0; i<cols; i++) {
-    double a = fabs(mat[i][i]);
-
-    if (a > norm2) norm2 = a;
-  }
-
-  // Determine rank...
-
-  norm2 *= relTol;
-
-  rank = cols;
-
-  for (int i=0; i<cols; i++) {
-    if (fabs(mat[i][i]) < norm2) {
-      mat[i][i] = 0.0;
-      rank--;
-    }
-  }
-
-  // Find solution...
-
-  if (rhs) {
-    for (int i=0; i<rhs_cols; i++) {
-      for (int j=0; j<cols; j++) {
-        double sum = 0.0;
-
-        for (int k=0; k<cols; k++) {
-          double mk = mat[k][k];
-          if (mk == 0.0) continue;
-
-          if (fabs(mk) >= norm2) sum += vt[k][j]*rhs[k][i]/mk;
-        }
-    
-        sol[j][i] = sum;
-      }
-    }
-  }
-
-  return true;
-}
-
-//---------------------------------------------------------------------------
-
-bool Matrix::solveSvd(int rows, int cols, Matrix& vt, 
-                                                 int& rank, int& svd_iter)
-{
-  if (vt.getRows() < cols) vt.setRows(cols);
-  if (vt.getColumns() < cols) vt.setColumns(cols);
-
-  return solveLs(rows,cols,vt.mat,NULL,0,NULL,0.0,rank,svd_iter);
-}
-
-//---------------------------------------------------------------------------
-
-bool Matrix::solveSvd(int rows, int cols, Matrix& vt, Matrix& u,
-                                   bool fullU, int& rank, int& svd_iter)
-{
-  if (vt.getRows() < cols) vt.setRows(cols);
-  if (vt.getColumns() < cols) vt.setColumns(cols);
-
-  if (u.getRows()    < rows) u.setRows(rows);
-  if (u.getColumns() < cols) u.setColumns(cols);
-
-  if (rows < cols) throw IllegalArgumentException("Matrix::solveLs");
-
-  bool ok = Svd(mat,rows,cols,u.mat,fullU,vt.mat,NULL,0,svd_iter);
-  if (!ok) return false;
-
-  double norm2 = 0.0;
-
-  for (int i=0; i<cols; i++) {
-    double a = fabs(mat[i][i]);
-
-    if (a > norm2) norm2 = a;
-  }
-
-  // Determine rank...
-
-  norm2 *= Double_Precision;
-
-  rank = cols;
-
-  for (int i=0; i<cols; i++) {
-    if (fabs(mat[i][i]) < norm2) {
-      mat[i][i] = 0.0;
-      rank--;
-    }
-  }
-
-  return true;
-}
-
-//---------------------------------------------------------------------------
-
-bool Matrix::solveLs(int rows, int cols, Matrix& vt, Vector& rhs,
-                     Vector& sol, double relTol, int& rank, int& svd_iter)
-{
-  if (rhs.size() < rows) throw IllegalArgumentException("Matrix::solveLs");
-
-  if (vt.getRows() < cols || vt.getColumns() < cols) vt.resize(cols,cols);
-
-  if (sol.size() < cols) sol.setSize(cols);
-
-  int rhsSz = rhs.size();
-
-  Matrix matRhs(rhsSz,1);
-
-  for (int i=0; i<rhsSz; i++) matRhs(i,0) = rhs[i];
-
-  int solSz = sol.size();
-
-  Matrix matSol(solSz,1);
-
-  for (int i=0; i<solSz; i++) matSol(i,0) = sol[i];
-
-  bool ok = solveLs(rows,cols,vt.mat,matRhs.mat,1,matSol.mat,relTol,rank,svd_iter);
-
-  for (int i=0; i<rhsSz; i++) rhs[i] = matRhs(i,0);
-  for (int i=0; i<solSz; i++) sol[i] = matSol(i,0);
-
-  return ok;
-}
-
-//---------------------------------------------------------------------------
-
-bool Matrix::solveLs(int rows, int cols, Matrix& vt, Matrix& rhs,
-                      Matrix& sol, double relTol, int& rank, int& svd_iter)
-{
-  if (rhs.getRows() < rows) throw IllegalArgumentException("Matrix::solveLs");
-
-  if (vt.getRows() < cols || vt.getColumns() < cols) vt.resize(cols,cols);
-
-  if (sol.getRows() < cols ||
-       sol.getColumns() < rhs.getColumns()) sol.resize(cols,rhs.getColumns());
-
-  return solveLs(rows,cols,vt.mat,rhs.mat,rhs.cls,sol.mat,relTol,rank,svd_iter);
-}
-
-//---------------------------------------------------------------------------
-
 void Matrix::transpose(Matrix& transposedMat) const
 {
   if (transposedMat.rws != cls || transposedMat.cls != rws)
@@ -562,126 +394,6 @@ void Matrix::multiply(const Matrix& b, Matrix& result) const
       result.mat[i][j] = s;
     }
   }
-}
-
-//---------------------------------------------------------------------------
-
-bool Matrix::invertGauss(Matrix& invMat)
-{
-  if (rws != cls) throw IllegalFormatException("Matrix::invertGauss");
-
-  int *ipvt = (int *)alloca(rws * sizeof(int));
-
-  Matrix inv(rws,rws);
-
-  for (int i=0; i<rws; ++i) {
-    ipvt[i] = i;
-    inv.mat[i][i] = 1.0;
-  }
-
-  for (int i=0; i<rws; ++i) {
-    int idx = -1, lastNonZero = -1;
-    double mx = 0.0;
-
-    for (int j=i; j<rws; ++j) {
-      double v = abs(mat[ipvt[j]][i]);
-
-      if (v > mx) {
-        mx = v;
-        idx = j;
-      }
-
-      if (v > 0.0) lastNonZero = j;
-    }
-
-    if (idx < 0) return false; // Matrix is singular
-
-    if (i != idx) { // Swap rows
-      int ir = ipvt[i]; ipvt[i] = ipvt[idx]; ipvt[idx] = ir;
-    }
-
-    idx = ipvt[i];
-    double sc = 1.0/mat[idx][i];
-
-    double *row = mat[idx];
-    double *invRow = inv.mat[idx];
-
-    for (int j=0; j<cls; ++j) {
-      row[j] *= sc;
-      invRow[j] *= sc;
-    }
-
-    for (int j=0; j<=lastNonZero; ++j) {
-      if (i == j) continue;
-
-      int dstIdx = ipvt[j];
-
-      double *dstRow    = mat[dstIdx];
-      double *dstInvRow = inv.mat[dstIdx];
-
-      sc = dstRow[i];
-
-      if (sc == 0.0) continue;
-
-      for (int k=0; k<cls; ++k) {
-        dstRow[k]    -= row[k] * sc;
-        dstInvRow[k] -= invRow[k] * sc;
-      }
-
-      dstRow[i] = 0.0;
-    }
-  }
-
-  if (invMat.rws != rws || invMat.cls != rws) invMat.alloc(rws,rws);
-
-  for (int i=0; i<rws; ++i) {
-    double *dstRow = invMat.mat[i];
-    double *srcRow = inv.mat[ipvt[i]];
-
-    for (int j=0; j<cls; ++j) dstRow[j] = srcRow[j];
-  }
-
-  return true;
-}
-
-//---------------------------------------------------------------------------
-
-bool Matrix::invertMoorePenrose(Matrix& invMat)
-{
-  if (invMat.rws != cls || invMat.cls != rws) invMat.alloc(cls,rws);
-
-  if (rws < cls) {
-    Matrix tr(cls,rws);
-    transpose(tr);
-
-    Matrix t1(rws,rws);
-    multiply(tr,t1);
-
-    Matrix t2(rws,rws);
-    if (!t1.invertGauss(t2)) return false;
-
-    tr.multiply(t2,invMat);
-
-    return true;
-  }
-  else if (rws > cls) {
-    Matrix tr(cls,rws);
-    transpose(tr);
-
-    Matrix t1(cls,cls);
-    tr.multiply(*this,t1);
-
-    Matrix t2(cls,cls);
-    if (!t1.invertGauss(t2)) return false;
-
-    Matrix t3(rws,cls);
-    multiply(t2,t3);
-
-    t3.transpose(invMat);
-
-    return true;
-  }
-  else return invertGauss(invMat);
 }
 
 //---------------------------------------------------------------------------
@@ -721,8 +433,8 @@ void Matrix::solveLDLT(Vector& rhs)
     r =      new double[rws];
   }
   else {
-    lwbIdx = (int *)alloca(rws * sizeof(int));
-    r      = (double *)alloca(rws * sizeof(double));
+    lwbIdx = (int *)_malloca(rws * sizeof(int));
+    r      = (double *)_malloca(rws * sizeof(double));
   }
 
   for (int i=0; i<cls; ++i) lwbIdx[i] = 0;
@@ -819,8 +531,8 @@ void Matrix::solveLDLT(Matrix& rhs)
     r =      new double[rws];
   }
   else {
-    lwbIdx = (int *)alloca(rws * sizeof(int));
-    r      = (double *)alloca(rws * sizeof(double));
+    lwbIdx = (int *)_malloca(rws * sizeof(int));
+    r      = (double *)_malloca(rws * sizeof(double));
   }
 
   for (int i=0; i<cls; ++i) lwbIdx[i] = 0;
@@ -884,38 +596,6 @@ void Matrix::solveLDLT(Matrix& rhs)
     delete[] lwbIdx;
     delete[] r;
   }
-}
-
-//---------------------------------------------------------------------------
-
-bool Matrix::gSvd2(Matrix& matA, Matrix& matB,
-                   int rowsA, int rowsB, int cols,
-                   Matrix& rhsA, Matrix& rhsB, int rhsCols, double tol,
-                   Matrix& q, Vector& alpha, Vector& beta,
-                   Ino::ProgressReporter *rep)
-{
-  if (rowsA < cols || rowsB < cols || cols < 2)
-                            throw IllegalArgumentException("Matrix2::gSvd2");
-  if (matA.getColumns() < cols || matB.getColumns() < cols)
-                            throw IllegalArgumentException("Matrix2::gSvd2");
-  if (matA.getRows() < rowsA || matB.getRows() < rowsB)
-                            throw IllegalArgumentException("Matrix2::gSvd2");
-
-  if (rhsA.getRows() < rowsA || rhsB.getRows() < rowsB)
-                          throw IllegalArgumentException("Matrix2::solveLs");
-
-  if (rhsB.getColumns() < rhsCols || rhsB.getColumns() < rhsCols)
-                          throw IllegalArgumentException("Matrix2::solveLs");
-
-  if (q.getRows() < cols || q.getColumns() < cols) q.resize(cols,cols);
-
-  if (alpha.size() < cols) alpha.setSize(cols);
-  if (beta.size() < cols)  beta.setSize(cols);
-
-  tol = fabs(tol);
-
-  return GSvd2(matA.mat,matB.mat,rowsA,rowsB,cols,
-               rhsA.mat,rhsB.mat,rhsCols,tol,q.mat,alpha.va,beta.va,rep);
 }
 
 } // namespace Ino

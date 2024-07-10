@@ -303,9 +303,9 @@ template <class T> bool Array<T>::isObjectOwner() const
 
 template <class T> void Array<T>::setObjectOwner(bool owner)
 {
-  if (!ArrayTraits::BaseType<T>::IsArrayElemPtr)
-    throw OperationNotSupportedException("Array<T>::setObjectOwner()\n"
-                                   "Can only be owner of ArrayElem *");
+  //if (!ArrayTraits::BaseType<T>::IsArrayElemPtr)
+  //  throw OperationNotSupportedException("Array<T>::setObjectOwner()\n"
+  //                                 "Can only be owner of ArrayElem *");
 
   objOwner = owner;
 }

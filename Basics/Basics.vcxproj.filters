@@ -14,9 +14,6 @@
     <ClCompile Include="src\Basics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\NonLinLsSolver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\ProgressReporter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -38,9 +35,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\1.0\Basics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\inc\1.0\NonLinLsSolver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\1.0\Rect.h">
