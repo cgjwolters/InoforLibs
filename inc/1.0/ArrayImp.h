@@ -549,7 +549,7 @@ template <class T> Array<T>::Array(bool owner,
   lst(NULL), lstSz(0), lstCap(0)
 {
   if (objOwner && !ArrayTraits::BaseType<T>::IsArrayElemPtr)
-    throw WrongTypeException("Array<T>: Can only be owner of ArrayElem *");
+  throw WrongTypeException("Array<T>: Can only be owner of ArrayElem *");
 
   const type_info& tp = typeid(T);
 

@@ -33,7 +33,7 @@ template <> struct StringT<wchar_t> { static const bool value = true; };
 template <class T> struct BaseType
 {
   struct Yes { char c; };
-  struct No  { char c[8]; };
+  struct No  { char c[16]; };
 
   static No  m(...);
   static Yes m(const ArrayElem *);

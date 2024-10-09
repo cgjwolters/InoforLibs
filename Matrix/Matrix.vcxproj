@@ -63,6 +63,8 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Lib>
       <OutputFile>..\lib\1.0\Matrix-d.lib</OutputFile>
