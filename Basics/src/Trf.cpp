@@ -1049,6 +1049,93 @@ double& Trf3::operator()(int ix, int iy)
 
 } // namespace Ino
 
+//---------------------------------------------------------------------------
+// Interface Section
+
+
+void* Trf3New()
+{
+  return new Ino::Trf3();
+}
+
+void* Trf3Copy(void* cppTrf)
+{
+  Ino::Trf3* trf = (Ino::Trf3*)cppTrf;
+
+  return new Ino::Trf3(*trf);
+}
+
+double GetElementTrf3(void* cppTrf, int row, int col)
+{
+  Ino::Trf3* trf = (Ino::Trf3*)cppTrf;
+
+  return (*trf)(row, col);
+}
+
+void SetElementTrf3(void* cppTrf, int row, int col, double value)
+{
+  Ino::Trf3* trf = (Ino::Trf3*)cppTrf;
+
+  (*trf)(row,col) = value;
+}
+
+bool GetDerivativeTrf3(void* cppTrf)
+{
+  Ino::Trf3* trf = (Ino::Trf3*)cppTrf;
+
+  return trf->isDerivative;
+}
+
+void SetDerivativeTrf3(void* cppTrf, bool isDer)
+{
+  Ino::Trf3* trf = (Ino::Trf3*)cppTrf;
+
+  trf->isDerivative = isDer;
+}
+
+void InitTrf3(void* cppTrf)
+{
+  Ino::Trf3* trf = (Ino::Trf3*)cppTrf;
+
+  trf->init();
+}
+
+void ZeroTrf3(void* cppTrf)
+{
+  Ino::Trf3* trf = (Ino::Trf3*)cppTrf;
+
+  trf->zero();
+}
+
+double DeterminantTrf3(void* cppTrf)
+{
+  Ino::Trf3* trf = (Ino::Trf3*)cppTrf;
+
+  return trf->determinant();
+}
+
+void MirrorTrf3(void* cppTrf, const Ino::Vec3& org, const Ino::Vec3& mirrorAxis)
+{
+  Ino::Trf3* trf = (Ino::Trf3*)cppTrf;
+
+  trf->mirror(org, mirrorAxis);
+}
+
+bool Invert(void* cppTrf)
+{
+  Ino::Trf3* trf = (Ino::Trf3*)cppTrf;
+
+  return trf->invert();
+}
+
+bool InvertInto(void* cppTrf, void* cppInvTrf)
+{
+  Ino::Trf3* trf = (Ino::Trf3*)cppTrf;
+  Ino::Trf3* invTrf = (Ino::Trf3*)cppInvTrf;
+
+  return trf->invertInto(*invTrf);
+}
+
 // -------------------------------------------------------------------------
 // ------------------- End of module ---------------------------------------
 // -------------------------------------------------------------------------

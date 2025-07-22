@@ -122,8 +122,29 @@ class Trf3
 
     friend class Vec3;
 };
-
 } // namespace Ino
+
+// Interface Section
+
+extern "C" __declspec(dllexport) void* Trf3New();
+extern "C" __declspec(dllexport) void* Trf3Copy(void *cppTrf);
+
+extern "C" __declspec(dllexport) double GetElementTrf3(void *cppTrf, int row, int col);
+extern "C" __declspec(dllexport) void SetElementTrf3(void *cppTrf, int row, int col, double value);
+
+extern "C" __declspec(dllexport) bool GetDerivativeTrf3(void* cppTrf);
+extern "C" __declspec(dllexport) void SetDerivativeTrf3(void* cppTrf, bool isDer);
+
+extern "C" __declspec(dllexport) void InitTrf3(void* cppTrf);
+extern "C" __declspec(dllexport) void ZeroTrf3(void* cppTrf); // All elements to zero
+
+extern "C" __declspec(dllexport) double DeterminantTf3(void *cppTrf);
+
+extern "C" __declspec(dllexport) void MirrorTrf3(void *cppTrf, const Ino::Vec3& org,
+                                                 const Ino::Vec3& mirrorAxis); // Mirror along
+
+extern "C" __declspec(dllexport) bool Invert(void* cppTrf);
+extern "C" __declspec(dllexport) bool InvertInto(void* cppTrf, void* cppInvTrf);
 
 // -------------------------------------------------------------------------
 
